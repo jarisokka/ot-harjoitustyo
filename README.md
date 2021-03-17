@@ -3,3 +3,6 @@
 
 ## Yleistä
 Tähän tullaan myöhemmin määrittelemään kurssilla tehtävän harjoitustyön sisältö.
+
+## Ohjeet
+
