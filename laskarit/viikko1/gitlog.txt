@@ -1,0 +1,122 @@
+commit 5ba5d2f57d0508ee2f54f9afd0fb90ab785c407f
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:53:42 2021 +0200
+
+    muutokset tehty
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 4844f38d179188a9794c6010e860fa82a3521e58
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:37:31 2021 +0200
+
+    tiedostot luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 2af01428c3d968d429e2de694528c1efe3b01214
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:35:36 2021 +0200
+
+    restore komento ei toimi!
+
+ eka.txt | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit ed29ee6a8d609173c9e2e8b9b8b2c47437303f62
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:08:06 2021 +0200
+
+    muutoksia sisältöön
+
+ eka.txt    | 14 ++++----------
+ kolmas.txt | 11 ++++++++---
+ 2 files changed, 12 insertions(+), 13 deletions(-)
+
+commit c87dd1d725f295f8fa5f0d06c60923d37a6b1256
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:05:36 2021 +0200
+
+    nimi muutettu
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 6185b926556f634807a478db917b378e38dcdcd7
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:04:19 2021 +0200
+
+    poistettu
+
+ toinen.txt | 3 ---
+ 1 file changed, 3 deletions(-)
+
+commit a969a9f56fe7655fcf98ae24bcef771db99b0b4a
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 13:00:50 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+commit ffa841a491733f5c2ac172bb0e280038c9da5ab8
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 12:59:43 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+commit 4593de85b6f984cc6379b704f071a48bce49973b
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 12:56:50 2021 +0200
+
+    muutos ja lisäys
+
+ stuff/jokintiedosto.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 29d2b1fbc8c5df58363c368c17e3a7221c650c6a
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 12:55:03 2021 +0200
+
+    muutos ja lisäys
+
+ kolmas.txt | 3 +++
+ toinen.txt | 3 +++
+ 2 files changed, 6 insertions(+)
+
+commit cff96f3119ddeb89c30528dc6606ef4dac86e097
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 12:53:37 2021 +0200
+
+    kolmas.txt luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 4dd83b0e3523dcde67b91ae4b8abb32668f9c110
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 12:47:17 2021 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 8 ++++++++
+ toinen.txt   | 0
+ 2 files changed, 8 insertions(+)
+
+commit dfda252362fe8466fb4c495b3c72b81574748b6a
+Author: Jari Sokka <sokkajar@gmail.com>
+Date:   Wed Mar 17 12:42:53 2021 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
