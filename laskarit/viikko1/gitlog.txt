@@ -69,6 +69,7 @@ commit ffa841a491733f5c2ac172bb0e280038c9da5ab8
 Author: Jari Sokka <sokkajar@gmail.com>
 Date:   Wed Mar 17 12:59:43 2021 +0200
 
+
     muutos ja lisäys
 
  tiedosto.txt | 18 +++++++++++++++++-
