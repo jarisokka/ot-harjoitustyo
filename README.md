@@ -6,4 +6,4 @@ Oma sovellukseni Helsingin yliopiston Tietojenkäsittelytieteen kurssiin. Kurssi
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](./osakeseuranta/dokumentaatio/vaatimusmaarittely.md)
-- [Työaikakirjanpito](./osakeseuranta/tuntikirjanpito.md)
+- [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
