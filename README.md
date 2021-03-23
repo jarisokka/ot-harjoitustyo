@@ -2,7 +2,8 @@
 # Ohjelmistotekniikka, kevät 2021
 
 ## Yleistä
-Tähän tullaan myöhemmin määrittelemään kurssilla tehtävän harjoitustyön sisältö.
+Oma sovellukseni Helsingin yliopiston Tietojenkäsittelytieteen kurssiin. Kurssilla tutustutaan ohjelmistokehityksen periaatteisiin sekä menetelmiin ja sovelletaan niitä toteuttamalla pienehkö harjoitustyö.
 
-## Ohjeet
-
+## Dokumentaatio
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
