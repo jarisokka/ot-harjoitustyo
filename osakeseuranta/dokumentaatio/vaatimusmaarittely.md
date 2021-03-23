@@ -35,7 +35,7 @@ Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautu
 ## Jatkokehitysideoita
 * Pörssien määrän lisääminen sekä osakkeiden määrän lisääminen kattamaan esim. Pohjoismaat.
 * Visuaalisien elementtien tuominen mukaan, kurssigraafit ym.
-* Omien osakkeiden vertailu toiseen osakkeeseen tai yleisindeksiin. Tämä voidaan esitettää kurssigraafin avulla.
+* Omien osakkeiden vertailu toiseen osakkeeseen tai yleisindeksiin. Tämä voidaan esittää kurssigraafin avulla.
 * Pörssin kurssien päivitys esim. viiden minuutin välein.
 * Erillaisten tunnuslukujen lisääminen osakkeisiin, esim. P/E ja volatiliteetti. 
 
