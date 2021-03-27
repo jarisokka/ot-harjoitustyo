@@ -4,5 +4,7 @@
 | :----:|:-----| :-----|
 | 20.3. | 3    | Poetryn kanssa tappelua |
 | 23.3. | 1    | Vaatimusmäärittelyn toteutus |
+| 26.3. | 4    | Ensimmäiset luokat datan noutamiseen Yahoo:sta |
+| 27.3  | 1    | Uusi luokka datan hakemiseen, ensimmäiset testit | 
 
 

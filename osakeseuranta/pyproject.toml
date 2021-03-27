@@ -6,8 +6,12 @@ authors = ["Jari Sokka <sokkajar@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+yfinance = "^0.1.59"
+invoke = "^1.5.0"
+coverage = "^5.5"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

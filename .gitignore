@@ -1,8 +1,8 @@
-/laskarit/viikko2/maksukortti/.vscode
-/laskarit/viikko2/maksukortti/.pytest_cache
-/laskarit/viikko2/maksukortti/.coverage
-/laskarit/viikko2/maksukortti/htmlcov
-/laskarit/viikko2/unicafe/.vscode
-/laskarit/viikko2/unicafe/.coverage
-/laskarit/viikko2/unicafe/htmlcov
-/laskarit/viikko2/unicafe/.pytest_cache
+.vscode
+.coverage
+.pytest_cache
+__pycache__
+htmlcov
+
+/osakeseuranta/src/testing.py
+
