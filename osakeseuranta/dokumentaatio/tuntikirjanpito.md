@@ -7,6 +7,8 @@
 | 26.3. | 4    | Ensimmäiset luokat datan noutamiseen Yahoo:sta |
 | 27.3  | 5    | Uusi luokka datan hakemiseen, ensimmäiset testit |
 |       |      | Ui komponentin lisäys jossa näkyvät pörssikurssit osakkeille |
-| 29.3  | 4    | csv tiedoston lukijan rakentaminen jolla noudetaan osakkeiden tunnuksia |
+| 29.3  | 6    | csv tiedoston lukijan rakentaminen jolla noudetaan osakkeiden tunnuksia |
+|       |      | Osakkeen tietojen haku liian hidas. Haku rekennettu uudelleen |
+
 
 

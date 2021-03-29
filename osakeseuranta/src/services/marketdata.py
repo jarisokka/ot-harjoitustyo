@@ -6,23 +6,26 @@ class MarketData:
         self.stocks = stocks
         self.result = {}
         self.tickerdata = None
-        self.tickerinfo = None
 
     def stockListStartClose(self):
         for stock in self.stocks:
-            self.tickerdata = yf.Ticker(stock) 
-            self.tickerinfo = self.tickerdata.info
+            symbol = stock
+            name = self.stocks[stock]
             self.result[stock] = []
-            prev = self.tickerinfo['regularMarketPreviousClose']
-            now = self.tickerinfo['regularMarketPrice']
+            data = yf.download(symbol, period='2d')
+            prev = "{:.2f}".format(data['Adj Close'][0])
+            prev = float(prev)          
+            now = "{:.2f}".format(data['Close'][1])
+            now = float(now)
             changeM = "{:.2f}".format(now - prev)
-            changeP = "{:.2f}".format(((now - prev)/prev)*100)
-            self.result[stock].append(self.tickerdata.info['shortName'])
+            changeP = float("{:.2f}".format(((now - prev)/prev)*100))
+            if changeP > 0:
+                changeP = '+' + str(changeP)
+            self.result[stock].append(name)
             self.result[stock].append(prev)
             self.result[stock].append(now)
-            self.result[stock].append(str(changeM) + '€')
-            self.result[stock].append(str(changeP) + '%')
-
+            self.result[stock].append(str(changeM) + ' €')
+            self.result[stock].append(str(changeP) + ' %')
 
     def getList(self):
         return self.stocks
@@ -47,14 +50,14 @@ class MarketData:
 
 #Test
 if __name__ == "__main__":
-    stocks = ['TIETO.HE', 'NDA-FI.HE', 'TELIA1.HE']
+    stocks = {'TIETO.HE':'TietoEVRY Corporation', 'NDA-FI.HE':'Nordea Bank Abp'}
     market = MarketData(stocks)
     market.stockListStartClose()
     market.printAll()
-    market.getNameWithTicker('TELIA1.HE')
-    market.getClosePriceWithTicker('TELIA1.HE')
-    market.getNowPriceWithTicker('TELIA1.HE')
-    market.getMoneyChangeWithTicker('TELIA1.HE')
-    market.getProcentChangeWithTicker('TELIA1.HE')
+    print(market.getNameWithTicker('NDA-FI.HE'))
+    print(market.getClosePriceWithTicker('NDA-FI.HE'))
+    print(market.getNowPriceWithTicker('NDA-FI.HE'))
+    print(market.getMoneyChangeWithTicker('NDA-FI.HE'))
+    print(market.getProcentChangeWithTicker('NDA-FI.HE'))
 
 

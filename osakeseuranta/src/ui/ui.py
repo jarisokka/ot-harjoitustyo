@@ -7,10 +7,10 @@ from services.marketdata import MarketData
 class UI:
     def __init__(self, root):
         self.stocks = readStockListFromFile('OMX25H.csv')
-        self.stocks = self.stocks.read_file()
+        self.stocks = self.stocks.read_file()  
         self.size = len(self.stocks)
         self._root = root
-        self._root.geometry('800x500')
+        self._root.geometry('800x650')
         self.title = ('Arial', 24, 'bold')
         self.text = ('Arial', 12)
         self.market = MarketData(self.stocks)
@@ -26,7 +26,7 @@ class UI:
         frameMain = ttk.Label(master=self._root)
         frameMain.pack(padx=10, pady=10) 
 
-        stock_tree = ttk.Treeview(frameMain)
+        stock_tree = ttk.Treeview(frameMain, height=300)
         stock_tree['columns'] = ('Tunnus', 'Yrityksen nimi', 'Hinta', 'Kehitys', '%Kehitys')
 
         # Format columns
@@ -54,7 +54,7 @@ class UI:
             changep  = str(self.market.getProcentChangeWithTicker(stock))
             stock_tree.insert(parent='', index='end', iid=stock, text='', values=(symbol, name, price, changem, changep) )
         
-        stock_tree.pack()
+        stock_tree.pack(padx=10, pady=10)
 
 
 
