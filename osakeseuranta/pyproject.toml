@@ -5,7 +5,7 @@ description = ""
 authors = ["Jari Sokka <sokkajar@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.6"
 yfinance = "^0.1.59"
 invoke = "^1.5.0"
 coverage = "^5.5"

@@ -10,7 +10,7 @@ class MarketInfo:
         self.indexPreviousDay = None
         self.indexNow = None
 
-    def stockMarketSearch(self, tickersymbol):
+    def stockMarketSearch(self):
         self.tickerdata = yf.Ticker(self.tickersymbol)
         self.tickerinfo = self.tickerdata.info
         self.name = self.tickerinfo['shortName']
@@ -37,9 +37,10 @@ class MarketInfo:
     def getOpenNow(self):
         return print('Close previous day: ' + str(self.indexPreviousDay) + ' Now: ' + str(self.indexNow))
 
+#Test
 if __name__ == "__main__":
     market = MarketInfo('^OMXH25')
-    market.stockMarketSearch(market.getSymbol())
+    market.stockMarketSearch()
     print(market.getName())
     market.getChange()
     market.getOpenNow()

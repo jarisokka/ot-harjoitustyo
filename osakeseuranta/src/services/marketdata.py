@@ -8,7 +8,7 @@ class MarketData:
         self.tickerdata = None
         self.tickerinfo = None
 
-    def stockListStartClose(self, stocks):
+    def stockListStartClose(self):
         for stock in self.stocks:
             self.tickerdata = yf.Ticker(stock) 
             self.tickerinfo = self.tickerdata.info
@@ -31,26 +31,25 @@ class MarketData:
         return print(self.result)
     
     def getNameWithTicker(self, ticker: str):
-        return print(self.result[ticker][0])
+        return self.result[ticker][0]
 
     def getClosePriceWithTicker(self, ticker: str):
-        return print(self.result[ticker][1])
+        return self.result[ticker][1]
 
     def getNowPriceWithTicker(self, ticker: str):
-        return print(self.result[ticker][2])
+        return self.result[ticker][2]
 
     def getMoneyChangeWithTicker(self, ticker: str):
-        return print(self.result[ticker][3])
+        return self.result[ticker][3]
 
     def getProcentChangeWithTicker(self, ticker: str):
-        return print(self.result[ticker][4])
+        return self.result[ticker][4]
 
-
+#Test
 if __name__ == "__main__":
     stocks = ['TIETO.HE', 'NDA-FI.HE', 'TELIA1.HE']
-
     market = MarketData(stocks)
-    market.stockListStartClose(market.getList())
+    market.stockListStartClose()
     market.printAll()
     market.getNameWithTicker('TELIA1.HE')
     market.getClosePriceWithTicker('TELIA1.HE')

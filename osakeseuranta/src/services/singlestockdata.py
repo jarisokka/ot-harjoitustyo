@@ -1,5 +1,4 @@
 import yfinance as yf
-#import datetime
 
 class SingleStockData:
 
@@ -9,7 +8,7 @@ class SingleStockData:
         self.indexPreviousDay = None
         self.indexNow = None
 
-    def stockSearchDay(self, tickersymbol):
+    def stockSearchDay(self):
         self.tickerdata = yf.Ticker(self.tickersymbol)
         self.tickerinfo = self.tickerdata.info 
         self.indexPreviousDay = self.tickerinfo['regularMarketPreviousClose']
@@ -24,8 +23,9 @@ class SingleStockData:
     def getPriceNow(self):
         return self.indexNow    
 
+#Test
 if __name__ == "__main__":
     stock = SingleStockData('NDA-FI.HE')
-    stock.stockSearchDay(stock.getTickerSymbol())
+    stock.stockSearchDay()
     print(stock.getPricePreviousDay())
     print(stock.getPriceNow())  
