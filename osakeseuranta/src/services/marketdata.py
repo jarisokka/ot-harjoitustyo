@@ -1,24 +1,26 @@
 import yfinance as yf
+from services.singlestockdata import SingleStockData
+
 
 class MarketData:
 
     def __init__(self, stocks: list):
+        self.newstock = None
         self.stocks = stocks
         self.result = {}
         self.tickerdata = None
 
     def stockListStartClose(self):
         for stock in self.stocks:
-            symbol = stock
-            name = self.stocks[stock]
+            self.newstock = SingleStockData(stock)
+            self.newstock.stockGetOneDayPrices()
+
             self.result[stock] = []
-            data = yf.download(symbol, period='2d')
-            prev = "{:.2f}".format(data['Adj Close'][0])
-            prev = float(prev)          
-            now = "{:.2f}".format(data['Close'][1])
-            now = float(now)
-            changeM = "{:.2f}".format(now - prev)
-            changeP = float("{:.2f}".format(((now - prev)/prev)*100))
+            name = self.stocks[stock]
+            prev = self.newstock.getPricePreviousDay()
+            now = self.newstock.getPriceNow()
+            changeM = self.newstock.getCountChangeMoney(now, prev)
+            changeP = float(self.newstock.getCountChangeProcent(now, prev))
             if changeP > 0:
                 changeP = '+' + str(changeP)
             self.result[stock].append(name)
@@ -27,12 +29,13 @@ class MarketData:
             self.result[stock].append(str(changeM) + ' €')
             self.result[stock].append(str(changeP) + ' %')
 
+
     def getList(self):
         return self.stocks
     
     def printAll(self):
         return print(self.result)
-    
+
     def getNameWithTicker(self, ticker: str):
         return self.result[ticker][0]
 
@@ -59,5 +62,6 @@ if __name__ == "__main__":
     print(market.getNowPriceWithTicker('NDA-FI.HE'))
     print(market.getMoneyChangeWithTicker('NDA-FI.HE'))
     print(market.getProcentChangeWithTicker('NDA-FI.HE'))
+
 
 

@@ -1,4 +1,5 @@
 import os
+from collections import OrderedDict
 
 dirname = os.path.dirname(__file__)
 
@@ -16,8 +17,8 @@ class readStockListFromFile:
                 symbol = stock[0]
                 name = stock[1]
                 self.stocks[symbol] = name
-
-        return self.stocks
+        return OrderedDict(sorted(self.stocks.items()))
+        #return self.stocks
 
 #Test
 if __name__ == "__main__":

@@ -9,7 +9,9 @@
 |       |      | Ui komponentin lisäys jossa näkyvät pörssikurssit osakkeille |
 | 29.3  | 6    | csv tiedoston lukijan rakentaminen jolla noudetaan osakkeiden tunnuksia |
 |       |      | Osakkeen tietojen haku liian hidas. Haku rekennettu uudelleen |
-| 30.3  | 1    | Testien korjausta sekä asennusohjeiden tekoa |
+| 30.3  | 3    | Testien korjausta sekä asennusohjeiden tekoa |
+|       |      | csv tiedoston ei toiminut Linuxissa, korjattu |
+|       |      | pörssihaun luokkien muokkaamista |
 
 
 

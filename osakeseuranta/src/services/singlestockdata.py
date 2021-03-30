@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 class SingleStockData:
 
-    def __init__(self, tickersymbol: str):   
+    def __init__(self, tickersymbol: str):
         self.tickersymbol = tickersymbol
         self.pricePreviousDay = None
         self.priceNow = None
@@ -42,21 +42,14 @@ class SingleStockData:
     def getPriceYTD(self):
         return self.priceYTD
 
-    def getCountChangeMoney(self, old: float, now: float):
-        result = "{:.2f}".format(old - now)
+    def getCountChangeMoney(self, now: float, old: float):
+        result = "{:.2f}".format(now - old)
         return result
 
-    def getCountChangeProcent(self, old: float, now: float):
-        result = "{:.2f}".format(((old - now)/old)*100)
+    def getCountChangeProcent(self, now: float, old: float):
+        result = "{:.2f}".format(((now - old)/old)*100)
         return result      
 
-    def getChangeMoney(self):
-        result = "{:.2f}".format(self.pricePreviousDay - self.priceNow)
-        return result  
-
-    def getChangeProcent(self):
-        result = "{:.2f}".format(((self.pricePreviousDay - self.priceNow)/self.pricePreviousDay)*100)
-        return result  
 
 #Test
 if __name__ == "__main__":
@@ -64,8 +57,6 @@ if __name__ == "__main__":
     stock.stockGetOneDayPrices()
     print(stock.getPricePreviousDay())
     print(stock.getPriceNow()) 
-    print(stock.getChangeMoney())
-    print(stock.getChangeProcent())
     stock.stockGetStartOfYear()
     print(stock.getPriceStartOfYear())
     stock.stockGetYTD()
