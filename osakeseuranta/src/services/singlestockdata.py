@@ -13,7 +13,7 @@ class SingleStockData:
     def stockGetOneDayPrices(self):
         data = yf.download(self.tickersymbol, period='2d')
         self.pricePreviousDay = "{:.2f}".format(data['Adj Close'][0])
-        self.pricePreviousDay = float(self.pricePreviousDay)          
+        self.pricePreviousDay = float(self.pricePreviousDay)        
         self.priceNow = "{:.2f}".format(data['Close'][1])
         self.priceNow = float(self.priceNow)
 

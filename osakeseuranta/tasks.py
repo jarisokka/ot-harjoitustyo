@@ -1,6 +1,10 @@
 from invoke import task
 
 @task
+def start(ctx):
+    ctx.run("python src/run.py")
+
+@task
 def test(ctx):
     ctx.run("pytest src")
 
