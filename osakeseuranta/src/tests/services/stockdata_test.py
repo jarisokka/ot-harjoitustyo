@@ -9,9 +9,9 @@ class TestStockData(unittest.TestCase):
         self.assertEqual(str(self.stock.getTickerSymbol()), 'NDA-FI.HE')
 
     def test_there_is_price_set_previousday(self):
-        self.stock.stockSearchDay(self.stock.getTickerSymbol())
+        self.stock.stockGetOneDayPrices()
         self.assertNotEqual(self.stock.getPricePreviousDay(), None)
     
     def test_there_is_price_set_now(self):
-        self.stock.stockSearchDay(self.stock.getTickerSymbol())
+        self.stock.stockGetOneDayPrices()
         self.assertNotEqual(self.stock.getPriceNow(), None)

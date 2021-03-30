@@ -13,14 +13,14 @@ Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautu
 
 ### Perusnäkymä
 
-* Voidaan valita pörssi, jonka kurssit näytetään. Oletusnäkymänä OMXH25 (Helsinki). Valittavana pohjoismaiden pörssit.
+* Oletusnäkymänä OMXH25 (Helsinki) päivätasolla
 * Kurssien seurantatasot:
-    * Viimeisen päivän kurssit. Vielä auki, voiko kurseja päivittää vai haetaanko vain edellisen päivän päätöskurssit.
+    * Viimeisen päivän kurssit.
     * Kurssit vuoden alusta.
     * YTD kurssit.
 * Kirjautuminen:
     * Avautuu ikkuna, jossa voidaan kirjautua järjestelmään tai luoda uusi tunnus.
-    * 
+
 
 ### Näkymä kirjautuneelle käyttäjälle
 
@@ -33,6 +33,7 @@ Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautu
 * Uloskirjautuminen, paluu perusnäkymään.
 
 ## Jatkokehitysideoita
+* Voidaan valita pörssi, jonka kurssit näytetään. Oletusnäkymänä OMXH25 (Helsinki). Valittavana pohjoismaiden pörssit.
 * Pörssien määrän lisääminen sekä osakkeiden määrän lisääminen kattamaan esim. Pohjoismaat.
 * Visuaalisien elementtien tuominen mukaan, kurssigraafit ym.
 * Omien osakkeiden vertailu toiseen osakkeeseen tai yleisindeksiin. Tämä voidaan esittää kurssigraafin avulla.
