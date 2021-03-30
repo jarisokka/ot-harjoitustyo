@@ -8,7 +8,7 @@ class readStockListFromFile:
         self._file_path = os.path.join(dirname, "..", "data", "OMX25H.csv")
         self.stocks = {}
 
-    def read_file(self):    
+    def read_file(self):
         with open(self._file_path) as file:
             for stock in file:
                 stock = stock.replace('\n', '')
