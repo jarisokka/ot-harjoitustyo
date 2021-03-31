@@ -11,7 +11,8 @@
 |       |      | Osakkeen tietojen haku liian hidas. Haku rekennettu uudelleen |
 | 30.3  | 3    | Testien korjausta sekä asennusohjeiden tekoa |
 |       |      | csv tiedoston ei toiminut Linuxissa, korjattu |
-|       |      | pörssihaun luokkien muokkaamista |
+|       |      | Pörssihaun luokkien muokkaamista |
+| 31.3  | 4    | Pörssidatan hintahakuun lisätty YTD ja 1-vuosi |
 
 
 
