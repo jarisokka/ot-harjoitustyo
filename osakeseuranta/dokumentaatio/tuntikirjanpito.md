@@ -13,7 +13,8 @@
 |       |      | csv tiedoston ei toiminut Linuxissa, korjattu |
 |       |      | Pörssihaun luokkien muokkaamista |
 | 31.3  | 4    | Pörssidatan hintahakuun lisätty YTD ja 1-vuosi |
-| 5.4   | 1    | Lisätty virheiden hallintaa |
+| 5.4   | 4    | Lisätty virheiden hallintaa |
+|       |      | Näkymät lisätty: päivä, vuoden alusta, vuosi |
 
 
 

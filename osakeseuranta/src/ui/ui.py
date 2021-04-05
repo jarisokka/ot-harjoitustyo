@@ -2,14 +2,19 @@ from tkinter import *
 from tkinter import Tk, ttk
 from repositories.reader import readStockListFromFile
 from services.marketdata import MarketData
+from ui.day_view import DayView 
+from ui.ytd_view import YTDView
+from ui.year_view  import YearView
 
+# Page change logic and methods are copied from the course material
 
 class UI:
     def __init__(self, root):
         self._root = root
+        self._current_view = None
         self._root.geometry('800x650')
-        self.title = ('Arial', 24, 'bold')
-        self.text = ('Arial', 12)
+        #self.title = ('Arial', 24, 'bold')
+        #self.text = ('Arial', 12)
         self.stocks = None
         self.size = None
         self.market = None
@@ -28,60 +33,59 @@ class UI:
 
 
     def start(self):
-        frameTitle = ttk.Label(master=self._root)
-        frameTitle.pack(padx=10, pady=10)
+        self._show_day_view()
 
-        label = ttk.Label(master=frameTitle, text='Osakkeet', font=self.title)
-        label.grid(row=0, column=0)
+    def _hide_current_view(self):
+        if self._current_view:
+            self._current_view.destroy()
 
-        frameInfo = ttk.Label(master=self._root)
-        frameInfo.pack() 
+        self._current_view = None
 
-        label = ttk.Label(master=frameInfo, text='päivämäärä')
-        label.grid(row=0, column=0, padx=10, pady=10)
-        day = ttk.Button(master=frameInfo, text=' Päivä ')
-        day.grid(row=0, column=1)
-        year = ttk.Button(master=frameInfo, text=' YTD ')
-        year.grid(row=0, column=2)  
-        ytd = ttk.Button(master=frameInfo, text=' Vuosi ')
-        ytd.grid(row=0, column=3)
+    def _handle_ytd(self):
+        self._show_ytd_view()
 
+    def _handle_day(self):
+        self._show_day_view()
+    
+    def _handle_year(self):
+        self._show_year_view()
 
-        frameMain = ttk.Label(master=self._root)
-        frameMain.pack(padx=10, pady=10) 
+    def _show_day_view(self):
+        self._hide_current_view()
 
-        stock_tree = ttk.Treeview(frameMain, height=300)
-        stock_tree['columns'] = ('#1', '#2', '#3', '#4', '#5')
+        self._current_view = DayView(
+            self._root,
+            self._handle_ytd,
+            self._handle_year,
+            self.stocks,
+            self.market
+        )
 
-        # Format columns
-        stock_tree.column('#0', width=0, stretch=NO)
-        stock_tree.column('#1', width=90, anchor=W)
-        stock_tree.column('#2', width=200, anchor=W)
-        stock_tree.column('#3', width=100, anchor=CENTER)
-        stock_tree.column('#4', width=100, anchor=CENTER)
-        stock_tree.column('#5', width=100, anchor=CENTER)
+        self._current_view.pack()
 
-        # Create Headings
-        stock_tree.heading('#0', text='', anchor=W)
-        stock_tree.heading('#1', text='Tunnus', anchor=W)
-        stock_tree.heading('#2', text='Yrityksen nimi', anchor=W)
-        stock_tree.heading('#3', text='Kurssi', anchor=CENTER)
-        stock_tree.heading('#4', text='Kehitys', anchor=CENTER)
-        stock_tree.heading('#5', text='% Kehitys', anchor=CENTER)
+    def _show_ytd_view(self):
+        self._hide_current_view()
 
-        # Add data
-        for stock in self.stocks:
-            symbol = str(stock)
-            name = str(self.market.getNameWithTicker(stock))
-            price = str(self.market.getNowPriceWithTicker(stock))
-            changem  = str(self.market.getMoneyChangeDayWithTicker(stock))
-            changep  = str(self.market.getProcentChangeDayWithTicker(stock))
-            stock_tree.insert(parent='', index='end', iid=stock, text='', values=(symbol, name, price, changem, changep) )
-        
-        stock_tree.pack(padx=10, pady=10)
+        self._current_view = YTDView(
+            self._root,
+            self._handle_day,
+            self._handle_year,
+            self.stocks,
+            self.market
+        )
 
+        self._current_view.pack()
+    
+    def _show_year_view(self):
+        self._hide_current_view()
 
+        self._current_view = YearView(
+            self._root,
+            self._handle_day,
+            self._handle_ytd,
+            self.stocks,
+            self.market
+        )
 
-
-
+        self._current_view.pack()
 

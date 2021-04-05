@@ -2,11 +2,11 @@ from tkinter import *
 from tkinter import Tk, ttk, constants
 
 
-class DayView:
-    def __init__(self, root, handle_ytd, handle_year, stocks, market):
+class YearView:
+    def __init__(self, root, handle_day, handle_ytd, stocks, market):
         self._root = root
+        self._handle_day = handle_day
         self._handle_ytd = handle_ytd
-        self._handle_year = handle_year
         self._frame = None
         self.stocks = stocks
         self.market = market
@@ -33,7 +33,7 @@ class DayView:
         button = ttk.Button(
             master=frameInfo,
             text=' Päivä ',
-            state=DISABLED
+            command=self._handle_day
         )
         button.grid(row=0, column=1)       
 
@@ -47,9 +47,10 @@ class DayView:
         button = ttk.Button(
             master=frameInfo,
             text=' Vuosi ',
-            command=self._handle_year
+            state=DISABLED
         )
         button.grid(row=0, column=3)
+
 
         frameMain = ttk.Label(master=self._frame)
         frameMain.pack(padx=10, pady=10) 
@@ -78,8 +79,8 @@ class DayView:
             symbol = str(stock)
             name = str(self.market.getNameWithTicker(stock))
             price = str(self.market.getNowPriceWithTicker(stock))
-            changem  = str(self.market.getMoneyChangeDayWithTicker(stock))
-            changep  = str(self.market.getProcentChangeDayWithTicker(stock))
+            changem  = str(self.market.getMoneyChangeYearTicker(stock))
+            changep  = str(self.market.getProcentChangeYearTicker(stock))
             stock_tree.insert(parent='', index='end', iid=stock, text='', values=(symbol, name, price, changem, changep) )
         
         stock_tree.pack(padx=10, pady=10)
