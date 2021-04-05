@@ -18,35 +18,44 @@ class MarketData:
             self._name = self.stocks[stock]
 
             #Prices today
-            self._prev = self.newstock.getPricePreviousDay()
-            self._now = self.newstock.getPriceNow()
-            self._changedayprice = self.newstock.getCountChangeMoney(self._now, self._prev)
-            self._changedayprocent = float(self.newstock.getCountChangeProcent(self._now, self._prev))
-            self._changedayprocent = self._formatLine(self._changedayprocent)
+            try:
+                self._prev = self.newstock.getPricePreviousDay()
+                self._now = self.newstock.getPriceNow()
+                self._changedayprice = self.newstock.getCountChangeMoney(self._now, self._prev)
+                self._changedayprocent = float(self.newstock.getCountChangeProcent(self._now, self._prev))
+                self._changedayprocent = self._formatLine(self._changedayprocent)
+                self.result[stock].append(self._name)
+                self.result[stock].append(self._prev)
+                self.result[stock].append(self._now)
+                self.result[stock].append(str(self._changedayprice) + ' €')
+                self.result[stock].append(str(self._changedayprocent) + ' %')
+            except:
+                print('Single stock data day failed')
+
 
             #Prices YTD (beginning of the year)
-            self._prevytd = self.newstock.getPriceYTD()
-            self._changeytdprice = self.newstock.getCountChangeMoney(self._now, self._prevytd)
-            self._changeytdprocent = float(self.newstock.getCountChangeProcent(self._now, self._prevytd))
-            self._changeytdprocent = self._formatLine(self._changeytdprocent)
-  
-            #Prices One year
-            self._prevyear = self.newstock.getPriceYear()
-            self._changeyearprice = self.newstock.getCountChangeMoney(self._now, self._prevyear)
-            self._changeyearprocent = float(self.newstock.getCountChangeProcent(self._now, self._prevyear))
-            self._changeyearprocent = self._formatLine(self._changeyearprocent)
+            try:
+                self._prevytd = self.newstock.getPriceYTD()
+                self._changeytdprice = self.newstock.getCountChangeMoney(self._now, self._prevytd)
+                self._changeytdprocent = float(self.newstock.getCountChangeProcent(self._now, self._prevytd))
+                self._changeytdprocent = self._formatLine(self._changeytdprocent)
+                self.result[stock].append(self._prevytd)
+                self.result[stock].append(str(self._changeytdprice) + ' €')
+                self.result[stock].append(str(self._changeytdprocent) + ' %')
+            except:
+                print('Single stock data YTD failed')   
 
-            self.result[stock].append(self._name)
-            self.result[stock].append(self._prev)
-            self.result[stock].append(self._now)
-            self.result[stock].append(str(self._changedayprice) + ' €')
-            self.result[stock].append(str(self._changedayprocent) + ' %')
-            self.result[stock].append(self._prevytd)
-            self.result[stock].append(str(self._changeytdprice) + ' €')
-            self.result[stock].append(str(self._changeytdprocent) + ' %')
-            self.result[stock].append(self._prevyear)
-            self.result[stock].append(str(self._changeyearprice) + ' €')
-            self.result[stock].append(str(self._changeyearprocent) + ' %')
+            #Prices One year
+            try:
+                self._prevyear = self.newstock.getPriceYear()
+                self._changeyearprice = self.newstock.getCountChangeMoney(self._now, self._prevyear)
+                self._changeyearprocent = float(self.newstock.getCountChangeProcent(self._now, self._prevyear))
+                self._changeyearprocent = self._formatLine(self._changeyearprocent)
+                self.result[stock].append(self._prevyear)
+                self.result[stock].append(str(self._changeyearprice) + ' €')
+                self.result[stock].append(str(self._changeyearprocent) + ' %')
+            except:
+                print('Single stock data year failed')
 
     def _formatLine(self, value):
         if value > 0:
@@ -62,43 +71,76 @@ class MarketData:
         return print(self.result)
 
     def getNameWithTicker(self, ticker: str):
-        return self.result[ticker][0]
+        try:
+            return self.result[ticker][0]
+        except IndexError:
+            return 'NaN'
 
     def getClosePricePrevDayWithTicker(self, ticker: str):
-        return self.result[ticker][1]
+        try:
+            return self.result[ticker][1]
+        except IndexError:
+            return 'NaN'
 
     def getNowPriceWithTicker(self, ticker: str):
-        return self.result[ticker][2]
+        try:
+            return self.result[ticker][2]
+        except IndexError:
+            return 'NaN'
 
     def getMoneyChangeDayWithTicker(self, ticker: str):
-        return self.result[ticker][3]
+        try:
+            return self.result[ticker][3]
+        except IndexError:
+            return 'NaN'
 
     def getProcentChangeDayWithTicker(self, ticker: str):
-        return self.result[ticker][4]
+        try:
+            return self.result[ticker][4]
+        except IndexError:
+            return 'NaN'
 
     def getClosePriceYTDWithTicker(self, ticker: str):
-        return self.result[ticker][5]
+        try:
+            return self.result[ticker][5]
+        except IndexError:
+            return 'NaN'
 
     def getMoneyChangeYTDWithTicker(self, ticker: str):
-        return self.result[ticker][6]
+        try:
+            return self.result[ticker][6]
+        except IndexError:
+            return 'NaN'
 
     def getProcentChangeYTDWithTicker(self, ticker: str):
-        return self.result[ticker][7]
+        try:
+            return self.result[ticker][7]
+        except IndexError:
+            return 'NaN'
 
     def getClosePriceYearWithTicker(self, ticker: str):
-        return self.result[ticker][8]
+        try:
+            return self.result[ticker][8]
+        except IndexError:
+            return 'NaN'
 
     def getMoneyChangeYearTicker(self, ticker: str):
-        return self.result[ticker][9]
+        try:
+            return self.result[ticker][9]
+        except IndexError:
+            return 'NaN'
 
     def getProcentChangeYearTicker(self, ticker: str):
-        return self.result[ticker][10]
+        try:
+            return self.result[ticker][10]
+        except IndexError:
+            return 'NaN'
 
 
 
 #Test
 if __name__ == "__main__":
-    stocks = {'TIETO.HE':'TietoEVRY Corporation', 'NDA-FI.HE':'Nordea Bank Abp', 'OUT1V.HE':'Outokumpu Oyj'}
+    stocks = {'NDA-FI.HE':'Nordea test', 'CGCBV.HE':'Rikkinainen tiedosto', 'OUT1V.HE':'Outokumpu Oyj'}
     market = MarketData(stocks)
     market.stockCreateStockList()
     market.printAll()
