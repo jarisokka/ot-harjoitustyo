@@ -2,10 +2,10 @@
 # Ohjelmistotekniikka, kevät 2021
 
 ## Yleistä
-Oma sovellukseni Helsingin yliopiston Tietojenkäsittelytieteen kurssiin. Kurssilla tutustutaan ohjelmistokehityksen periaatteisiin sekä menetelmiin ja sovelletaan niitä toteuttamalla pienehkö harjoitustyö.
+Oma sovellukseni Helsingin yliopiston Tietojenkäsittelytieteen kurssiin. Kurssilla tutustutaan ohjelmistokehityksen periaatteisiin sekä menetelmiin ja sovelletaan niitä toteuttamalla pienehkö harjoitustyö. Harjoitustyönä toteutan osakkeiden seuranta sovelluksen, johon voi myös tallentaa omia osakkeita seurantaa varten.
 
 ### Tilannekatsaus
-Ohjelmaan on tehty luokat, jotka noutavat osakkeiden kursseja yfinance kirjaston avulla. Ensimmäiset testit luotu yhdelle näistä luokista, joskin vasta alustavat, jotta voidaan havainnoida poetryn asetuksien oikeellisuus ja toimivuus. Oletusnäkymälle tehty graaffinen käyttöliittymän, jossa näkyvissä Helsingin pörssin OMX25 listaus kurssitietoineen.
+Ohjelmaan on tehty luokat, jotka noutavat osakkeiden kursseja yfinance kirjaston avulla. Ensimmäiset testit luotu yhdelle näistä luokista, joskin vasta alustavat, jotta voidaan havainnoida poetryn asetuksien oikeellisuus ja toimivuus. Oletusnäkymälle tehty graaffinen käyttöliittymän, jossa näkyvissä Helsingin pörssin OMX25 listaus kurssitietoineen. Tällä hetkellä ei haeta jokaista OMX25-osaketa, jotta sovellus avautuu nopeammin ja kehitystyö on näin sujuvampaa. Oletusnäkymässä mahdollista katsoa tämän päivän kurssit sekä kurssikehitys, kurssikehitys vuoden alusta, sekä kurssikehitys vuoden takaiseen tilanteeseen nähden.
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](./osakeseuranta/dokumentaatio/vaatimusmaarittely.md)

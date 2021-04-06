@@ -3,13 +3,16 @@ from tkinter import Tk, ttk, constants
 
 
 class YearView:
-    def __init__(self, root, handle_day, handle_ytd, stocks, market):
+    def __init__(self, root, handle_day, handle_ytd, stocks, market, day, index, procent):
         self._root = root
         self._handle_day = handle_day
         self._handle_ytd = handle_ytd
         self._frame = None
         self.stocks = stocks
         self.market = market
+        self.day = day
+        self.index = index
+        self.procent = procent
         self._initialize()
 
     def pack(self):
@@ -22,34 +25,43 @@ class YearView:
         self._frame = ttk.Frame(master=self._root)
 
         frameTitle = ttk.Label(master=self._frame)
-        frameTitle.pack(padx=10, pady=10)
+        frameTitle.pack(padx=5, pady=5)
 
-        label = ttk.Label(master=frameTitle, text='Osakkeet')
-        label.grid(row=0, column=0)
-
+        label = ttk.Label(master=frameTitle, text='Osakkeiden kurssit', font='Helvetica')
+        label.grid(row=0, column=0, pady=5)
+        day = ttk.Label(master=frameTitle, text=self.day)
+        day.grid(row=1, column=0)
+ 
         frameInfo = ttk.Label(master=self._frame)
-        frameInfo.pack() 
+        frameInfo.pack(padx=5, pady=5) 
+
+        name = ttk.Label(master=frameInfo, text='OMX Helsinki')
+        name.grid(row=0, column=0, padx=50)
+        index = ttk.Label(master=frameInfo, text=self.index)
+        index.grid(row=1, column=0, padx=50)
+        procent = ttk.Label(master=frameInfo, text=self.procent)
+        procent.grid(row=2, column=0, padx=50) 
 
         button = ttk.Button(
             master=frameInfo,
             text=' Päivä ',
             command=self._handle_day
         )
-        button.grid(row=0, column=1)       
+        button.grid(row=1, column=1)       
 
         button = ttk.Button(
             master=frameInfo,
             text=' Vuoden alusta ',
             command=self._handle_ytd
         )
-        button.grid(row=0, column=2)
+        button.grid(row=1, column=2)
 
         button = ttk.Button(
             master=frameInfo,
             text=' Vuosi ',
             state=DISABLED
         )
-        button.grid(row=0, column=3)
+        button.grid(row=1, column=3)
 
 
         frameMain = ttk.Label(master=self._frame)

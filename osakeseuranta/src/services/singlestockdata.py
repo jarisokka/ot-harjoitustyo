@@ -9,6 +9,8 @@ class SingleStockData:
         self.priceNow = None
         self.priceYTD = None
         self.priceYear = None
+        self.today = datetime.today().strftime("%d.%m.%Y")
+        self.time = datetime.today().strftime("%H:%H:%S")
 
     def stockCreateAll(self):
         self.stockGetOneDayPrices()
@@ -17,7 +19,6 @@ class SingleStockData:
 
     def stockGetOneDayPrices(self):
         try:
-            print(self.tickersymbol)
             data = yf.download(self.tickersymbol, period='2d')
             self.pricePreviousDay = "{:.2f}".format(data['Adj Close'][0])
             self.pricePreviousDay = float(self.pricePreviousDay)
@@ -41,7 +42,6 @@ class SingleStockData:
             start = (datetime.today() - timedelta(days=365)).strftime("%Y-%m-%d")
             end = (datetime.today() - timedelta(days=364)).strftime("%Y-%m-%d")
             data = yf.download(self.tickersymbol, start=start, end=end)
-            print(data)
             self.priceYear = "{:.2f}".format(data['Close'][0]) 
             self.priceYear = float(self.priceYear)
         except:
@@ -71,17 +71,22 @@ class SingleStockData:
         result = "{:.2f}".format(((now - old)/old)*100)
         return result      
 
+    def getDay(self):
+        return self.today
+    
+    def getTime(self):
+        return self.time
 
 #Test
 if __name__ == "__main__":
-    stock = SingleStockData('CGCBV.HE')
+    stock = SingleStockData('^OMXH25')
     #stock.stockCreateAll()
     stock.stockGetOneDayPrices()
-    stock.stockYTD()
-    stock.stockYear()
+    #stock.stockYTD()
+    #stock.stockYear()
     print(stock.getPricePreviousDay())
     print(stock.getPriceNow()) 
-    print(stock.getPriceYTD())
-    print(stock.getPriceYear())
-    print(stock.getCountChangeMoney(stock.getPricePreviousDay(), stock.getPriceNow()))
-    print(stock.getCountChangeProcent(stock.getPricePreviousDay(), stock.getPriceNow()))
+    #print(stock.getPriceYTD())
+    #print(stock.getPriceYear())
+    #print(stock.getCountChangeMoney(stock.getPricePreviousDay(), stock.getPriceNow()))
+    #print(stock.getCountChangeProcent(stock.getPricePreviousDay(), stock.getPriceNow()))
