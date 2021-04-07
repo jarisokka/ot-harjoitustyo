@@ -14,6 +14,7 @@ Seuraavana työvaiheena on koodin dokumentoinnin aloittaminen sekä mahdollisuus
 - [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
 
 ## Asennus
+Suorita seuraavat komennot _osakeseuranta_-hakemistossa.
 
 1. Asenna riippuvuudet komennolla:
 ```bash
