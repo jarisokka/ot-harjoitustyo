@@ -26,7 +26,7 @@ class SingleStockData:
             self.priceNow = float(self.priceNow)
         except:
             print('Couldn´t download the wanted one day data')
-            pass
+            return False
 
     def stockYTD(self):
         try:
@@ -35,7 +35,7 @@ class SingleStockData:
             self.priceYTD = float(self.priceYTD)          
         except:
             print('Couldn´t download the wanted YTD data')
-            pass
+            return False
 
     def stockYear(self):
         try:
@@ -46,7 +46,7 @@ class SingleStockData:
             self.priceYear = float(self.priceYear)
         except:
             print('Couldn´t download the wanted year data')
-            pass
+            return False
 
     def getTickerSymbol(self):
         return self.tickersymbol
@@ -80,12 +80,13 @@ class SingleStockData:
 #Test
 if __name__ == "__main__":
     stock = SingleStockData('^OMXH25')
+    #stock = SingleStockData('xx')
     #stock.stockCreateAll()
     stock.stockGetOneDayPrices()
     #stock.stockYTD()
     #stock.stockYear()
-    print(stock.getPricePreviousDay())
-    print(stock.getPriceNow()) 
+    #print(stock.getPricePreviousDay())
+    #print(stock.getPriceNow()) 
     #print(stock.getPriceYTD())
     #print(stock.getPriceYear())
     #print(stock.getCountChangeMoney(stock.getPricePreviousDay(), stock.getPriceNow()))

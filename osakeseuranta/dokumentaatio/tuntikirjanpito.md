@@ -16,6 +16,7 @@
 | 5.4   | 4    | Lisätty virheiden hallintaa |
 |       |      | Näkymät lisätty: päivä, vuoden alusta, vuosi |
 | 6.4   | 2    | Lisätty päivämäärä, yleisindeksi, kehitys |
+| 7.4.  | 1    | Testejä lisätty |
 
 
 

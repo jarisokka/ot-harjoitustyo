@@ -82,8 +82,8 @@ class DayView:
         stock_tree.heading('#1', text='Tunnus', anchor=W)
         stock_tree.heading('#2', text='Yrityksen nimi', anchor=W)
         stock_tree.heading('#3', text='Kurssi', anchor=CENTER)
-        stock_tree.heading('#4', text='Kehitys', anchor=CENTER)
-        stock_tree.heading('#5', text='% Kehitys', anchor=CENTER)
+        stock_tree.heading('#4', text='€ kehitys', anchor=CENTER)
+        stock_tree.heading('#5', text='% kehitys', anchor=CENTER)
 
         # Add data
         for stock in self.stocks:

@@ -5,8 +5,9 @@ dirname = os.path.dirname(__file__)
 
 class readStockListFromFile:
 
-    def __init__(self, file_path):
-        self._file_path = os.path.join(dirname, "..", "data", "OMX25H.csv")
+    def __init__(self, file):
+        self.file = file
+        self._file_path = os.path.join(dirname, "..", "data", self.file)
         self.stocks = {}
 
     def read_file(self):
@@ -18,7 +19,7 @@ class readStockListFromFile:
                 name = stock[1]
                 self.stocks[symbol] = name
         return OrderedDict(sorted(self.stocks.items()))
-        #return self.stocks
+
 
 #Test
 if __name__ == "__main__":
