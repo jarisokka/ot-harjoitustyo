@@ -27,7 +27,6 @@ poetry install
 poetry run invoke build
 ```
 
-3. Käynnistä sovellus komennoilla:
 ```bash
 poetry shell
 ```
@@ -38,7 +37,7 @@ Koska sovelluksessa käytettävä yfinance-kirjasto ei suostu asentumaan poetry:
 pip3 install yfinance 
 ```
 
-Tämän jälkeen suorita komento
+3. Käynnistä sovellus komennoilla:
 
 ```bash
 poetry run invoke start
