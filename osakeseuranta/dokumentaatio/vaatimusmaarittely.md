@@ -13,12 +13,12 @@ Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautu
 
 ### Perusnäkymä
 
-* Oletusnäkymänä OMXH25 (Helsinki) päivätasolla
-* Kurssien seurantatasot:
+* [x] Oletusnäkymänä OMXH25 (Helsinki) päivätasolla
+* [x] Kurssien seurantatasot:
     * Viimeisen päivän kurssit.
     * Kurssit vuoden alusta.
     * YTD kurssit.
-* Kirjautuminen:
+* [x] Kirjautuminen:
     * Avautuu ikkuna, jossa voidaan kirjautua järjestelmään tai luoda uusi tunnus.
 
 

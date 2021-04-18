@@ -1,13 +1,14 @@
+# Page logic and methods are copied from the course material
 from tkinter import *
 from tkinter import Tk, ttk
-from repositories.reader import readStockListFromFile
 from services.marketdata import MarketData
 from services.singlestockdata import SingleStockData
-from ui.day_view import DayView 
+from ui.day_view import DayView
 from ui.ytd_view import YTDView
 from ui.year_view  import YearView
+from ui.create_user_login_view import CreateUserLoginView
 
-# Page change logic and methods are copied from the course material
+
 
 class UI:
     def __init__(self, root):
@@ -21,29 +22,25 @@ class UI:
         self.stocks = None
         self.market = None
 
-        self.createInfo()
-        self.initializeRead()
-        self.initializeCreate()
+        self.create_info()
+        self.initialize_create()
 
 
-    def createInfo(self):
+    def create_info(self):
         self.info = SingleStockData('^OMXH25')
-        self.info.stockGetOneDayPrices()
-        self.day = self.info.getDay()
-        self.index = self.info.getPriceNow()
-        self.procent = float(self.info.getCountChangeProcent(self.info.getPriceNow(), self.info.getPricePreviousDay()))
+        self.info.stock_get_one_day_prices()
+        self.day = self.info.get_day()
+        self.index = self.info.get_price_now()
+        self.procent = float(self.info.get_count_change_procent(self.info.get_price_now(), self.info.get_price_previous_day()))
         if self.procent > 0:
             self.procent = ('+' + str(self.procent) + ' %')
         else:
             self.procent = (str(self.procent) + ' %')
 
-    def initializeRead(self):
-        self.stocks = readStockListFromFile('OMX25H.csv')
-        self.stocks = self.stocks.read_file()
-    
-    def initializeCreate(self):
-        self.market = MarketData(self.stocks)
-        self.market.stockCreateStockList()
+    def initialize_create(self):
+        self.market = MarketData()
+        self.stocks = self.market.initialize_read('OMX25H.csv')
+        self.market.stock_create_stock_list()
 
     def start(self):
         self._show_day_view()
@@ -63,6 +60,9 @@ class UI:
     def _handle_year(self):
         self._show_year_view()
 
+    def _handle_login(self):
+        self._show_login_view()
+
     def _show_day_view(self):
         self._hide_current_view()
 
@@ -70,6 +70,7 @@ class UI:
             self._root,
             self._handle_ytd,
             self._handle_year,
+            self._handle_login,
             self.stocks,
             self.market,
             self.day,
@@ -86,6 +87,7 @@ class UI:
             self._root,
             self._handle_day,
             self._handle_year,
+            self._handle_login,
             self.stocks,
             self.market,
             self.day,
@@ -102,6 +104,7 @@ class UI:
             self._root,
             self._handle_day,
             self._handle_ytd,
+            self._handle_login,
             self.stocks,
             self.market,
             self.day,
@@ -111,3 +114,9 @@ class UI:
 
         self._current_view.pack()
 
+    def _show_login_view(self):
+        self.create_user_login = Tk()
+        self.create_user_login.attributes('-topmost',True)
+        self.create_user_login.title("Kirjautuminen ja tunnuksien luonti")
+        self._create_view = CreateUserLoginView(self.create_user_login)
+        self._create_view.pack()  

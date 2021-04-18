@@ -3,10 +3,11 @@ from tkinter import Tk, ttk, constants
 
 
 class YearView:
-    def __init__(self, root, handle_day, handle_ytd, stocks, market, day, index, procent):
+    def __init__(self, root, handle_day, handle_ytd, handle_login, stocks, market, day, index, procent):
         self._root = root
         self._handle_day = handle_day
         self._handle_ytd = handle_ytd
+        self._handle_login = handle_login
         self._frame = None
         self.stocks = stocks
         self.market = market
@@ -63,6 +64,12 @@ class YearView:
         )
         button.grid(row=1, column=3)
 
+        button = ttk.Button(
+            master=frameInfo,
+            text=' Kirjaudu ',
+            command=self._handle_login
+        )
+        button.grid(row=1, column=4)
 
         frameMain = ttk.Label(master=self._frame)
         frameMain.pack(padx=10, pady=10) 
@@ -89,10 +96,10 @@ class YearView:
         # Add data
         for stock in self.stocks:
             symbol = str(stock)
-            name = str(self.market.getNameWithTicker(stock))
-            price = str(self.market.getNowPriceWithTicker(stock))
-            changem  = str(self.market.getMoneyChangeYearTicker(stock))
-            changep  = str(self.market.getProcentChangeYearTicker(stock))
+            name = str(self.market.get_name_with_ticker(stock))
+            price = str(self.market.get_now_price_with_ticker(stock))
+            changem  = str(self.market.get_money_change_year_ticker(stock))
+            changep  = str(self.market.get_procent_change_year_ticker(stock))
             stock_tree.insert(parent='', index='end', iid=stock, text='', values=(symbol, name, price, changem, changep) )
         
         stock_tree.pack(padx=10, pady=10)

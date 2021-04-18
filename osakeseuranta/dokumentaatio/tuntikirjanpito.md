@@ -17,6 +17,11 @@
 |       |      | Näkymät lisätty: päivä, vuoden alusta, vuosi |
 | 6.4   | 2    | Lisätty päivämäärä, yleisindeksi, kehitys |
 | 7.4.  | 1    | Testejä lisätty |
+| 12.4  | 7    | Tietokanta yhteys, tietokanta käyttäjätunnuksille |
+|       |      | Käyttäjä voi nyt luoda uuden tunnuksen sekä kirjautua sovellukseen |
+| 14.4  | 2    | Pylint käyttöönotto ja koodin muotovirheiden korjaamista |
+| 17.4  | 5    | Muutos käyttöliittymään, poistettu yhteys repositories luokkaan. Yhteys nyt vain services luokaan |
+|       |      | Arkkitehtuuri kuvauksen työstäminen aloitettu, testien lisäämistä, poetry aiheutti jälleen harmia |
 
 
 

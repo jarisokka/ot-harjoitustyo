@@ -1,93 +1,85 @@
-import yfinance as yf
 from datetime import datetime, timedelta
+import yfinance as yf
 
 class SingleStockData:
 
     def __init__(self, tickersymbol: str):
         self.tickersymbol = tickersymbol
-        self.pricePreviousDay = None
-        self.priceNow = None
-        self.priceYTD = None
-        self.priceYear = None
+        self.price_previous_day = None
+        self.price_now = None
+        self.price_ytd = None
+        self.price_year = None
         self.today = datetime.today().strftime("%d.%m.%Y")
         self.time = datetime.today().strftime("%H:%H:%S")
 
-    def stockCreateAll(self):
-        self.stockGetOneDayPrices()
-        self.stockYTD()
-        self.stockYear()
+    def stock_create_all(self):
+        self.stock_get_one_day_prices()
+        self.stock_ytd()
+        self.stock_year()
 
-    def stockGetOneDayPrices(self):
+    def stock_get_one_day_prices(self):
         try:
             data = yf.download(self.tickersymbol, period='2d')
-            self.pricePreviousDay = "{:.2f}".format(data['Adj Close'][0])
-            self.pricePreviousDay = float(self.pricePreviousDay)
-            self.priceNow = "{:.2f}".format(data['Close'][1])
-            self.priceNow = float(self.priceNow)
+            self.price_previous_day = "{:.2f}".format(data['Adj Close'][0])
+            self.price_previous_day = float(self.price_previous_day)
+            self.price_now = "{:.2f}".format(data['Close'][1])
+            self.price_now = float(self.price_now)
         except:
             print('Couldn´t download the wanted one day data')
             return False
 
-    def stockYTD(self):
+    def stock_ytd(self):
         try:
             data = yf.download(self.tickersymbol, start='2021-1-4', end='2021-1-5')
-            self.priceYTD = "{:.2f}".format(data['Close'][0])
-            self.priceYTD = float(self.priceYTD)          
+            self.price_ytd = "{:.2f}".format(data['Close'][0])
+            self.price_ytd = float(self.price_ytd)
         except:
             print('Couldn´t download the wanted YTD data')
             return False
 
-    def stockYear(self):
+    def stock_year(self):
         try:
             start = (datetime.today() - timedelta(days=365)).strftime("%Y-%m-%d")
             end = (datetime.today() - timedelta(days=364)).strftime("%Y-%m-%d")
             data = yf.download(self.tickersymbol, start=start, end=end)
-            self.priceYear = "{:.2f}".format(data['Close'][0]) 
-            self.priceYear = float(self.priceYear)
+            self.price_year = "{:.2f}".format(data['Close'][0])
+            self.price_year = float(self.price_year)
         except:
             print('Couldn´t download the wanted year data')
             return False
 
-    def getTickerSymbol(self):
+    def get_ticker_symbol(self):
         return self.tickersymbol
 
-    def getPricePreviousDay(self):
-        return self.pricePreviousDay
-    
-    def getPriceNow(self):
-        return self.priceNow
+    def get_price_previous_day(self):
+        return self.price_previous_day
 
-    def getPriceYTD(self):
-        return self.priceYTD
-    
-    def getPriceYear(self):
-        return self.priceYear
+    def get_price_now(self):
+        return self.price_now
 
-    def getCountChangeMoney(self, now: float, old: float):
+    def get_price_ytd(self):
+        return self.price_ytd
+
+    def get_price_year(self):
+        return self.price_year
+
+    def get_count_change_money(self, now: float, old: float):
         result = "{:.2f}".format(now - old)
         return result
 
-    def getCountChangeProcent(self, now: float, old: float):
+    def get_count_change_procent(self, now: float, old: float):
         result = "{:.2f}".format(((now - old)/old)*100)
-        return result      
+        return result
 
-    def getDay(self):
+    def get_day(self):
         return self.today
-    
-    def getTime(self):
+
+    def get_time(self):
         return self.time
 
 #Test
 if __name__ == "__main__":
-    stock = SingleStockData('^OMXH25')
+    stocktest = SingleStockData('^OMXH25')
     #stock = SingleStockData('xx')
-    #stock.stockCreateAll()
-    stock.stockGetOneDayPrices()
-    #stock.stockYTD()
-    #stock.stockYear()
-    #print(stock.getPricePreviousDay())
-    #print(stock.getPriceNow()) 
-    #print(stock.getPriceYTD())
-    #print(stock.getPriceYear())
-    #print(stock.getCountChangeMoney(stock.getPricePreviousDay(), stock.getPriceNow()))
-    #print(stock.getCountChangeProcent(stock.getPricePreviousDay(), stock.getPriceNow()))
+    #stock.stock_create_all()
+    stocktest.stock_get_one_day_prices()

@@ -3,7 +3,7 @@ from collections import OrderedDict
 
 dirname = os.path.dirname(__file__)
 
-class readStockListFromFile:
+class ReadStockListFromFile:
 
     def __init__(self, file):
         self.file = file
@@ -23,5 +23,6 @@ class readStockListFromFile:
 
 #Test
 if __name__ == "__main__":
-    stock = readStockListFromFile('OMX25H.csv')
-    stock.read_file()
+    stocktest = ReadStockListFromFile('OMX25H.csv')
+    stocktest.read_file()
+    
