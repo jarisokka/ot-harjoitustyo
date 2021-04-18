@@ -31,6 +31,13 @@ poetry run invoke build
 ```bash
 poetry shell
 ```
+
+Koska sovelluksessa käytettävä yfinance-kirjasto ei suostu asentumaan poetry:n avulla, asennetaan se erikseen.
+
+```bash
+pip3 install yfinance 
+```
+
 Tämän jälkeen suorita komento
 
 ```bash
