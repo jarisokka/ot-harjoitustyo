@@ -12,7 +12,7 @@ Seuraavana työvaiheena tietokantojen lisääminen käyttäjän omille osakkeill
 ## Dokumentaatio
 - [Vaatimusmäärittely](./osakeseuranta/dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
-- [Arkkitehtuurikuvaus](./dokumentaatio/arkkitehtuuri.md)
+- [Arkkitehtuurikuvaus](./osakeseuranta/dokumentaatio/arkkitehtuuri.md)
 
 ## Asennus
 Suorita seuraavat komennot _osakeseuranta_-hakemistossa.
