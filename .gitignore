@@ -4,5 +4,6 @@
 __pycache__
 htmlcov
 
+# data files
 osakeseuranta/src/data/database.sqlite
-
+osakeseuranta/src/data/test-database.sqlite
