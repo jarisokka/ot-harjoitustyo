@@ -115,8 +115,8 @@ class UI:
         self._current_view.pack()
 
     def _show_login_view(self):
-        self.create_user_login = Tk()
-        self.create_user_login.attributes('-topmost',True)
-        self.create_user_login.title("Kirjautuminen ja tunnuksien luonti")
-        self._create_view = CreateUserLoginView(self.create_user_login)
-        self._create_view.pack()  
+        create_user_login = Tk()
+        create_user_login.attributes('-topmost',True)
+        create_user_login.title("Kirjautuminen ja tunnuksien luonti")
+        create_view = CreateUserLoginView(create_user_login)
+        create_view.pack()

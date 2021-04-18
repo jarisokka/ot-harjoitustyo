@@ -22,6 +22,7 @@
 | 14.4  | 2    | Pylint käyttöönotto ja koodin muotovirheiden korjaamista |
 | 17.4  | 5    | Muutos käyttöliittymään, poistettu yhteys repositories luokkaan. Yhteys nyt vain services luokaan |
 |       |      | Arkkitehtuuri kuvauksen työstäminen aloitettu, testien lisäämistä, poetry aiheutti jälleen harmia |
+| 18.4  | 1    | Kirjautusmisen error-ikkunat aukeat nyt päälimmäisiksi |
 
 
 

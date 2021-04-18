@@ -25,6 +25,7 @@ class CreateUserLoginView:
 
     def _show_user_view(self):
         userview = Tk()
+        userview.attributes('-topmost',True)
         userview.title("Omat osakkeet")
         userv = UserView(userview)
         userv.pack()
@@ -35,17 +36,20 @@ class CreateUserLoginView:
         password = self._password_entry.get()
 
         if len(username) == 0 or len(password) == 0:
-            return messagebox.showerror('error', 'Käyttäjätunnus ja salasana pakollinen')
+            return messagebox.showerror('error', 
+            'Käyttäjätunnus ja salasana pakollinen', parent=self._root)
 
         try:
             user_services.create_user(username, password)
             self._username_entry.delete(0, END)
             self._password_entry.delete(0, END)
             return messagebox.showinfo(
-                'ok', f'Käyttäjätunnus {username} luotiin onnistuneesti. Voit nyt kirjautua sisään.')
+                'ok', f'Käyttäjätunnus {username} luotiin onnistuneesti. Voit nyt kirjautua sisään.',
+                 parent=self._root)
         except UsernameExistsError:
             return messagebox.showerror(
-                'error', f'Käyttäjätunnus {username} on jo olemassa')
+                'error', f'Käyttäjätunnus {username} on jo olemassa',
+                 parent=self._root)
 
     def _login_handler(self):
         username = self._username_entry.get()
@@ -60,21 +64,21 @@ class CreateUserLoginView:
 
     def _initialize_heading_field(self):
         heading_label = ttk.Label(master=self._frame, text='Luo uusi käyttäjätunnus tai kirjaudu sisään')
-        heading_label.grid(row=0, column=1, pady=20)          
+        heading_label.grid(row=0, column=1, padx=10, pady=20)          
 
     def _initialize_username_field(self):
         username_label = ttk.Label(master=self._frame, text='Käyttäjätunnus')
         username_label.grid(row=2, column=0, padx=5, pady=5)
 
         self._username_entry = ttk.Entry(master=self._frame)
-        self._username_entry.grid(row=2, column=1, sticky=(constants.E, constants.W), padx=5, pady=5)   
+        self._username_entry.grid(row=2, column=1, sticky=(constants.E, constants.W), padx=10, pady=5)
 
     def _initialize_password_field(self):
         password_label = ttk.Label(master=self._frame, text='Salasana')
         password_label.grid(row=3, column=0 ,padx=5, pady=5)
 
         self._password_entry = ttk.Entry(master=self._frame)
-        self._password_entry.grid(row=3, column=1, sticky=(constants.E, constants.W), padx=5, pady=5)
+        self._password_entry.grid(row=3, column=1, sticky=(constants.E, constants.W), padx=10, pady=5)
 
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
@@ -95,8 +99,8 @@ class CreateUserLoginView:
             command=self._login_handler
         )
 
-        self._frame.grid_columnconfigure(1, minsize=180)
+        self._frame.grid_columnconfigure(1, minsize=220)
 
-        create_user_button.grid(row=5, column=1, padx=5, pady=5, sticky=constants.EW)
-        login_button.grid(row=6, column=1, padx=5, pady=5, sticky=constants.EW)
+        create_user_button.grid(row=5, column=1, padx=10, pady=5, sticky=constants.EW)
+        login_button.grid(row=6, column=1, padx=10, pady=5, sticky=constants.EW)
 
