@@ -12,8 +12,7 @@ class CreateUserLoginView:
         self._frame = None
         self._username_entry = None
         self._password_entry = None
-        self._error_variable = None
-        self._error_label = None
+        self._user = None
 
         self._initialize()  
 
@@ -27,7 +26,7 @@ class CreateUserLoginView:
         userview = Tk()
         userview.attributes('-topmost',True)
         userview.title("Omat osakkeet")
-        userv = UserView(userview)
+        userv = UserView(userview, self._user)
         userv.pack()
         userview.mainloop()
 
@@ -57,6 +56,7 @@ class CreateUserLoginView:
 
         try:
             user_services.login(username, password)
+            self._user = username
             self.destroy()
             self._show_user_view()
         except InvalidCredentialsError:
@@ -99,7 +99,7 @@ class CreateUserLoginView:
             command=self._login_handler
         )
 
-        self._frame.grid_columnconfigure(1, minsize=220)
+        self._frame.grid_columnconfigure(1, minsize=120)
 
         create_user_button.grid(row=5, column=1, padx=10, pady=5, sticky=constants.EW)
         login_button.grid(row=6, column=1, padx=10, pady=5, sticky=constants.EW)

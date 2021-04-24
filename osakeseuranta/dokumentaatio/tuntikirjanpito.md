@@ -23,6 +23,10 @@
 | 17.4  | 5    | Muutos käyttöliittymään, poistettu yhteys repositories luokkaan. Yhteys nyt vain services luokaan |
 |       |      | Arkkitehtuuri kuvauksen työstäminen aloitettu, testien lisäämistä, poetry aiheutti jälleen harmia |
 | 18.4  | 1    | Kirjautusmisen error-ikkunat aukeat nyt päälimmäisiksi |
+| 19.4  | 2    | Testien laajentamista |
+| 22.4  | 5    | Omien osakkeiden tallennus tietokantaan rakentaminen aloitettu |
+| 23.4  | 6    | Omien osakkeiden tallennus tietokantaan rakentaminen jatkuu |
+| 24.4  | 4    | Omien osakkeiden tallenus tietokantaan nyt käytössä |
 
 
 

@@ -6,7 +6,7 @@ def start(ctx):
 
 @task
 def build(ctx):
-    ctx.run("python3 src/build.py")
+    ctx.run("python src/build.py")
 
 @task
 def test(ctx):

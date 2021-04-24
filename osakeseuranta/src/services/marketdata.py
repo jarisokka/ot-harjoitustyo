@@ -8,7 +8,6 @@ class MarketData:
         self.newstock = None
         self.stocks = None
         self.result = {}
-        self.tickerdata = None
 
     def initialize_read(self, file):
         self.file = file
@@ -72,9 +71,6 @@ class MarketData:
 
     def get_list(self):
         return self.stocks
-
-    def print_all(self):
-        return print(self.result)
 
     def get_name_with_ticker(self, ticker: str):
         try:
@@ -148,10 +144,5 @@ class MarketData:
 if __name__ == "__main__":
     stocktest = {'NDA-FI.HE':'Nordea test', 'CGCBV.HE':'Rikkinainen tiedosto',
      'OUT1V.HE':'Outokumpu Oyj'}
-    market = MarketData(stocktest)
-    market.stock_create_stock_list()
-    market.print_all()
-    print(market.get_name_with_ticker('NDA-FI.HE'))
-    print(market.get_close_price_prev_day_with_ticker('NDA-FI.HE'))
-    print(market.get_now_price_with_ticker('NDA-FI.HE'))
+    market = MarketData()
     

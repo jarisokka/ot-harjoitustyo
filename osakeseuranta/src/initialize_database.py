@@ -16,6 +16,15 @@ def create_tables(connection):
             password text
         );
     ''')
+    cursor.execute('''
+        create table stocks (
+            user text not null,
+            ticker text not null unique,
+            name text not null,
+            price real not null,
+            date text not null
+        );
+    ''')
     connection.commit()
 
 def initialize_database():
