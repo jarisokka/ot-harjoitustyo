@@ -9,7 +9,7 @@ Ohjelmaan on tehty luokat, jotka noutavat osakkeiden kursseja yfinance kirjaston
 
 Kirjautunut käyttäjä voi nyt tallentaa omia osakkeita tietokantaan. Virheenkorjauksia ei ole vielä käytössä, joten omien osakkeiden tallennuksessa voi tehdä monta asiaa, jolla saa sovelluksen kaatumaan tai tilttiin. Jos testaat sovelluksen tätä osaa, niin toimi seuraavasti: valitse osake nuolen avulla ja paina tämän jälkeen _Lisää osakkeen tiedot_ -painiketta. Täytä tämän jälkeen hankintahinta antamalla se numeroina jossa desimaalieroitin on piste. Hankita ajankohtaan voi antaa haluamansa syötteen. Paina tämän jälkeen _Tallenna_ -painiketta. Poistaminen tietokannasta sekä tietojen päivitys tapahtuu seuraavasti: valitse _treeView_ -lista näkymästä haluamasi osake ja paina tämän jälkeen _Poista valittu_-painiketta. Vastaavasti hankintahinnan tai ajankohdan muutoksen voit suorittaa _Päivitä_-painikkeella.
 
-Seuraavana työvaiheena on virheenkorjauksien lisääminen sekä testien laajentaminen.
+Seuraavana työvaiheena on virheenkorjauksien lisääminen kirjautuneen käyttäjän näkymään sekä testien laajentaminen. _user_view_ luokkaa vaatii muokkaamista, se sisältää nyt sellaista toiminnallisuutta joka ei sinne kuulu.
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](./osakeseuranta/dokumentaatio/vaatimusmaarittely.md)

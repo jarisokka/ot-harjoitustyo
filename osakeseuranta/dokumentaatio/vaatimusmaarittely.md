@@ -24,13 +24,13 @@ Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautu
 
 ### Näkymä kirjautuneelle käyttäjälle
 
-* Voidaan valita näkymä, jossa omat osakkeet.
-* Voidaan lisätä uusia osakkeita:
+* [x] Voidaan valita näkymä, jossa omat osakkeet.
+* [x] Voidaan lisätä uusia osakkeita:
     * Hakutoiminto, jolla haetaan haluttu osake. Perusversiossa vain Helsingin pörssin osakkeet.
     * Osakkeelle annetaan ostopäivä sekä hankintahinta.
     * Osakkeen tietojen muokkaaminen.
-* Näytetään omien osakkeiden kehitys; päivän kurssi - ostohinta.
-* Uloskirjautuminen, paluu perusnäkymään.
+* [x] Näytetään omien osakkeiden kehitys; päivän kurssi - ostohinta.
+* [x] Uloskirjautuminen, paluu perusnäkymään.
 
 ## Jatkokehitysideoita
 * Voidaan valita pörssi, jonka kurssit näytetään. Oletusnäkymänä OMXH25 (Helsinki). Valittavana pohjoismaiden pörssit.
