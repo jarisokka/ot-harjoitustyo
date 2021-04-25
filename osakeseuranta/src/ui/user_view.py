@@ -8,7 +8,7 @@ class UserView:
     def __init__(self, root, user):
         self._root = root
         self._user = user
-        self._root.geometry('800x500')
+        self._root.geometry('950x500')
         self._frame = None
 
         self.clicked = StringVar()

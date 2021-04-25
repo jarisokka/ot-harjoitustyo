@@ -39,9 +39,9 @@ class SingleStockData:
 
     def stock_year(self):
         try:
-            start = (datetime.today() - timedelta(days=365)).strftime("%Y-%m-%d")
-            end = (datetime.today() - timedelta(days=364)).strftime("%Y-%m-%d")
-            data = yf.download(self.tickersymbol, start=start, end=end)
+            #start = (datetime.today() - timedelta(days=365)).strftime("%Y-%m-%d")
+            #end = (datetime.today() - timedelta(days=364)).strftime("%Y-%m-%d")
+            data = yf.download(self.tickersymbol, period='1y')
             self.price_year = "{:.2f}".format(data['Close'][0])
             self.price_year = float(self.price_year)
         except:
