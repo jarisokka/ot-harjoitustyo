@@ -16,6 +16,9 @@ Seuraavana työvaiheena on virheenkorjauksien lisääminen kirjautuneen käyttä
 - [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
 - [Arkkitehtuurikuvaus](./osakeseuranta/dokumentaatio/arkkitehtuuri.md)
 
+## Release
+[Viimeisin release](https://github.com/jarisokka/ot-harjoitustyo/releases/tag/viikko5)
+
 ## Asennus
 Suorita seuraavat komennot _osakeseuranta_-hakemistossa.
 
