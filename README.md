@@ -58,6 +58,7 @@ poetry run invoke test
 ```
 
 ### Testikattavuus
+Jos _Testaus_-osio on suoritettu ennen tätä, pitää _test-database.sqlite_ tiedosto deletoida _data_-kansiosta.
 Testikattavuusraportti generoidaan komennolla:
 
 ```bash
