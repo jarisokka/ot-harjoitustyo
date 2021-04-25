@@ -7,7 +7,7 @@ from ui.user_view import UserView
 class CreateUserLoginView:
     def __init__(self, root):
         self._root = root
-        self._root.geometry('365x225')
+        self._root.geometry('400x225')
         self._root.resizable(0, 0)
         self._frame = None
         self._username_entry = None
