@@ -48,7 +48,7 @@ Jotta sovellukseen voi tallentaa omia osakkeita, tulee siihin ensin luoda käytt
 
 Alla kuvattu sekvenssikaavio uuden käyttäjätunnuksen luomisesta. 
 
-![](./kuvat/sekvenssi-uusitunnus.jpg)
+![](./kuvat/sekvenssi-uusitunnus.png)
 
 [Tapahtumankäsitettelijä](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/create_user_login_view.py#L19) kutsuu sovelluslogiikan metodia [create_user](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/user_services.py#L35) antaen parametriksi luotavan käyttäjän tiedot. Sovelluslogiikka selvittää `UserRepository`:n avulla, onko käyttäjätunnus jo olemassa. Jos ei, niin sovelluslogiikka luo uuden _User_-olion ja tallentaa sen kutsumalla `UserRepository`:n metodia `create`. Onnistuneen tunnuksen luonnin jälkeen käyttöliittymä avaa _messagebox_:n jossa informoidaan uuden tunnuksen luonnin onnistumisesta ja että käyttäjä voi nyt kirjautua sovellukseen.
 
@@ -58,7 +58,7 @@ Kirjautuminen tapahtuu [Kirjaudu](../src/ui/create_user_login_view.py) näkymäs
 
 Alla kuvattu sekvenssikaavio sovellukseen kirjautumisesta. 
 
-![](./kuvat/sekvenssi-kirjautuminen.jpg)
+![](./kuvat/sekvenssi-kirjautuminen.png)
 
 [Tapahtumankäsitettelijä](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/create_user_login_view.py#L19) kutsuu sovelluslogiikan metodia [login](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/user_services.py#L17) antaen parametriksi käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää `UserRepository`:n avulla, onko käyttäjätunnus olemassa. Jos on, tarkastetaan täsmääkö salasana. Onnistuneen tarkastuksen jälkeen, käyttöliittymä avaa uuden näkymän `UserView`:n avulla. Tässä näkymässä käyttäjä voi hallinoida omien osakkeiden seurantaa. 
 
