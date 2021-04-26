@@ -27,6 +27,8 @@
 | 22.4  | 5    | Omien osakkeiden tallennus tietokantaan rakentaminen aloitettu |
 | 23.4  | 6    | Omien osakkeiden tallennus tietokantaan rakentaminen jatkuu |
 | 24.4  | 4    | Omien osakkeiden tallenus tietokantaan nyt käytössä |
+| 26.4. | 2    | Arkkitehtuurikuvauksen täydentämistä |
+|       | 67   | Yhteensä |
 
 
 
