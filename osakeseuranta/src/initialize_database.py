@@ -22,7 +22,7 @@ def create_tables(connection):
     cursor.execute('''
         create table stocks (
             user text not null,
-            ticker text not null unique,
+            ticker text not null,
             name text not null,
             price real not null,
             date text not null

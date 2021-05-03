@@ -63,3 +63,49 @@ class TestStockData(unittest.TestCase):
     def test_get_procent_change_ytd(self):
         self.market.result['VALMT.HE'][7] = 7
         self.assertEqual(self.market.get_procent_change_ytd_with_ticker('VALMT.HE'),7)
+
+    def test_get_close_price_year(self):
+        self.market.result['VALMT.HE'][8] = 8
+        self.assertEqual(self.market.get_close_price_year_with_ticker('VALMT.HE'),8)
+    
+    def test_get_money_change_year(self):
+        self.market.result['VALMT.HE'][9] = 9
+        self.assertEqual(self.market.get_money_change_year_ticker('VALMT.HE'),9)
+    
+    def test_get_procent_change_year(self):
+        self.market.result['VALMT.HE'][10] = 10
+        self.assertEqual(self.market.get_procent_change_year_ticker('VALMT.HE'),10)
+    
+    def test_error_get_name(self):
+        self.assertEqual(self.market.get_name_with_ticker('TEST'), 'NaN')
+    
+    def test_error_close_price_day(self):
+        self.assertEqual(self.market.get_close_price_prev_day_with_ticker('TEST'), 'NaN')
+
+    def test_error_now_price_day(self):
+        self.assertEqual(self.market.get_now_price_with_ticker('TEST'), 'NaN')
+
+    def test_error_change_money_day(self):
+        self.assertEqual(self.market.get_money_change_day_with_ticker('TEST'), 'NaN')
+    
+    def test_error_change_procent_day(self):
+        self.assertEqual(self.market.get_procent_change_day_with_ticker('TEST'), 'NaN')
+
+    def test_error_close_price_ytd(self):
+        self.assertEqual(self.market.get_close_price_ytd_with_ticker('TEST'), 'NaN')
+    
+    def test_error_change_money_ytd(self):
+        self.assertEqual(self.market.get_money_change_ytd_with_ticker('TEST'), 'NaN')
+    
+    def test_error_change_procent_ytd(self):
+        self.assertEqual(self.market.get_procent_change_ytd_with_ticker('TEST'), 'NaN')
+    
+    def test_error_close_price_year(self):
+        self.assertEqual(self.market.get_close_price_year_with_ticker('TEST'), 'NaN')
+    
+    def test_error_change_money_year(self):
+        self.assertEqual(self.market.get_money_change_year_ticker('TEST'), 'NaN')
+    
+    def test_error_change_procent_year(self):
+        self.assertEqual(self.market.get_procent_change_year_ticker('TEST'), 'NaN')
+    

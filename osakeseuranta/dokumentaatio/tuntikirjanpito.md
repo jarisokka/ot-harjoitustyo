@@ -28,7 +28,10 @@
 | 23.4  | 6    | Omien osakkeiden tallennus tietokantaan rakentaminen jatkuu |
 | 24.4  | 4    | Omien osakkeiden tallenus tietokantaan nyt käytössä |
 | 26.4. | 2    | Arkkitehtuurikuvauksen täydentämistä |
-|       | 67   | Yhteensä |
+| 28.4  | 3    | Lisätty virheiden hallintaa omien osakkeiden hallinta kohtaan |
+| 2.5   | 3    | Testejä laajennettu |
+| 3.5.  | 4    | Dockstring-dokumentaation lisäämistä |
+|       | 77   | Yhteensä |
 
 
 

@@ -1,8 +1,6 @@
 from tkinter import *
 from tkinter import Tk, ttk, constants, messagebox, StringVar
-from repositories.stock_repository import stock_repository
-from services.singlestockdata import SingleStockData
-from repositories.reader import ReadStockListFromFile
+from services.stock_services import stock_services, InvalidValuesError, StockExistsError, GeneralError
 
 class UserView:
     def __init__(self, root, user):
@@ -10,17 +8,13 @@ class UserView:
         self._user = user
         self._root.geometry('950x500')
         self._frame = None
-
         self.clicked = StringVar()
-        self._data = None
-        self._list = None
-
         self._ticker = None
         self._name = None
 
-        self.create_data()
-        self.get_stock_data()
-        self._list = self.initialize_read('search_list.csv')
+        self._data = stock_services.initialize_data(self._user)
+        self._data = stock_services.get_stock_data(self._data)
+        self._list = stock_services.read_list('search_list.csv')
         self._initialize()
 
     def pack(self):
@@ -31,29 +25,10 @@ class UserView:
         self._data = None
         self._frame.destroy()
 
-    def initialize_read(self, file):
-        self.file = file
-        self.items = ReadStockListFromFile(file)
-        self.items = self.items.read_file()
-        return self.items
-
-    def create_data(self):
-        self._data = stock_repository.get_stocks_by_user(self._user)
-
-    def get_stock_data(self):
-        for data in self._data:
-            self.newstock = SingleStockData(data)
-            self.newstock.stock_get_one_day_prices()
-            now = self.newstock.get_price_now()
-            self._data[data].append(str(now))
-            count = self.newstock.get_count_change_money(now, float(self._data[data][1]))
-            self._data[data].append(str(count) + ' €')
-            procent = self.newstock.get_count_change_procent(now, float(self._data[data][1]))
-            self._data[data].append(str(procent) + ' %')
-
     def update_data(self):
-        self.create_data()
-        self.get_stock_data()
+        self._data = stock_services.initialize_data(self._user)
+        self._data = stock_services.get_stock_data(self._data)
+
 
     def update_treeview(self):
         tree = self.stock_tree.get_children()
@@ -85,49 +60,73 @@ class UserView:
         self._initialize_ticker_value(self._ticker)
         self._initialize_name_value(self._name)
 
-    def _remove_stock(self):
-        selected = self.stock_tree.focus()
-        values = self.stock_tree.item(selected, 'values')
-        user = self._user
-        ticker = self._list[values[0]]
-
-        stock_repository.remove(user, ticker)
-        #lisätään ilmoitus onnistuiko
-        #self.stock_tree.delete(selected)
-        self._clear_values()
-        self.update_data()
-        self.update_treeview()
-
-
-
     def _submit_handler(self):
-        #tähän tarkastukset
         user = self._user
         ticker = self._ticker
         name = self._name
         price = self.price_entry.get()
         date = self.date_entry.get()
+        try:
+            stock_services.check_values(ticker, name, price, date)
+        except InvalidValuesError as error:
+            ticker = None
+            name = None
+            price = None
+            date = None
+            return messagebox.showinfo(
+                    'ok', f'{error}',
+                    parent=self._root)
 
-        stock_repository.create(user, ticker, name, price, date)
-        #lisätään ilmoitus onnistuiko
-        self._clear_values()
-        self.update_data()
-        self.update_treeview()
+        try:
+            stock_services.create_new(user, ticker, name, price, date)
+            self._clear_values()
+            self.update_data()
+            self.update_treeview()
+            return messagebox.showinfo(
+                'ok', f'Osake {name} lisättiin listaan',
+                 parent=self._root)
+        except StockExistsError:
+            return messagebox.showerror(
+                'error', f'Osake {name} on jo listalla',
+                 parent=self._root)
+
+    def _remove_stock(self):
+        try:
+            selected = self.stock_tree.focus()
+            values = self.stock_tree.item(selected, 'values')
+            user = self._user
+            ticker = self._list[values[0]]
+            stock_services.remove_stock(user, ticker)
+            self._clear_values()
+            self.update_data()
+            self.update_treeview()
+            return messagebox.showinfo(
+                'ok', 'Valittu osake poistettiin',
+                 parent=self._root)
+        except GeneralError:
+            return messagebox.showerror(
+                'error', f'Osakkeen {values[0]} poisto ei onnistunut',
+                 parent=self._root)
 
     def _update_handler(self):
-        selected = self.stock_tree.focus()
-        values = self.stock_tree.item(selected, 'values')
-        user = self._user
-        ticker = self._list[values[0]]
-        price = self.price_entry.get()
-        date = self.date_entry.get()
-
-        stock_repository.update(user, ticker, price, date)
-
-        self._clear_values()
-        self.update_data()
-        self.update_treeview()
-        #lisätään ilmoitus onnistuiko
+        try:
+            selected = self.stock_tree.focus()
+            values = self.stock_tree.item(selected, 'values')
+            user = self._user
+            ticker = self._list[values[0]]
+            price = self.price_entry.get()
+            date = self.date_entry.get()
+            stock_services.update_values(user, ticker, price, date)
+            self._clear_values()
+            self.update_data()
+            self.update_treeview()
+            return messagebox.showinfo(
+                'ok', f'Osakkeen {values[0]} tiedot päivitettiin',
+                 parent=self._root)
+        except GeneralError:
+            return messagebox.showinfo(
+                'ok', f'Osakkeen {values[0]} päivitys ei onnistunut',
+                parent=self._root)
 
     def _select_stock_handler(self, event):
         self._clear_values()
@@ -265,4 +264,3 @@ class UserView:
         update_data_button.grid(row=6, column=3, padx=10, pady=5, sticky=constants.EW)
         remove_data_button.grid(row=7, column=1, padx=10, pady=5, sticky=constants.EW)
         clear_stock_button.grid(row=7, column=3, padx=10, pady=5, sticky=constants.EW)
-
