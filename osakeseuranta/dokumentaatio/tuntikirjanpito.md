@@ -31,7 +31,8 @@
 | 28.4  | 3    | Lisätty virheiden hallintaa omien osakkeiden hallinta kohtaan |
 | 2.5   | 3    | Testejä laajennettu |
 | 3.5.  | 4    | Dockstring-dokumentaation lisäämistä |
-|       | 77   | Yhteensä |
+| 4.5.  | 3    | Ohjeiden ja arkkitehtuurikuvauksen täydentämistä |
+|       | 80   | Yhteensä |
 
 
 

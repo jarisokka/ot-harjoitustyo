@@ -50,7 +50,7 @@ Alla kuvattu sekvenssikaavio uuden käyttäjätunnuksen luomisesta.
 
 ![](./kuvat/sekvenssi-uusitunnus.png)
 
-[Tapahtumankäsitettelijä](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/create_user_login_view.py#L19) kutsuu sovelluslogiikan metodia [create_user](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/user_services.py#L35) antaen parametriksi luotavan käyttäjän tiedot. Sovelluslogiikka selvittää `UserRepository`:n avulla, onko käyttäjätunnus jo olemassa. Jos ei, niin sovelluslogiikka luo uuden _User_-olion ja tallentaa sen kutsumalla `UserRepository`:n metodia `create`. Onnistuneen tunnuksen luonnin jälkeen käyttöliittymä avaa _messagebox_:n jossa informoidaan uuden tunnuksen luonnin onnistumisesta ja että käyttäjä voi nyt kirjautua sovellukseen.
+[Tapahtumankäsitettelijä](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/create_user_login_view.py#L19) kutsuu sovelluslogiikan metodia [create_user](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/user_services.py) antaen parametriksi luotavan käyttäjän tiedot. Sovelluslogiikka selvittää `UserRepository`:n avulla, onko käyttäjätunnus jo olemassa. Jos ei, niin sovelluslogiikka luo uuden _User_-olion ja tallentaa sen kutsumalla `UserRepository`:n metodia `create`. Onnistuneen tunnuksen luonnin jälkeen käyttöliittymä avaa _messagebox_:n jossa informoidaan uuden tunnuksen luonnin onnistumisesta ja että käyttäjä voi nyt kirjautua sovellukseen.
 
 ### Käyttäjän kirjautuminen
 
@@ -60,7 +60,38 @@ Alla kuvattu sekvenssikaavio sovellukseen kirjautumisesta.
 
 ![](./kuvat/sekvenssi-kirjautuminen.png)
 
-[Tapahtumankäsitettelijä](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/create_user_login_view.py#L19) kutsuu sovelluslogiikan metodia [login](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/user_services.py#L17) antaen parametriksi käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää `UserRepository`:n avulla, onko käyttäjätunnus olemassa. Jos on, tarkastetaan täsmääkö salasana. Onnistuneen tarkastuksen jälkeen, käyttöliittymä avaa uuden näkymän `UserView`:n avulla. Tässä näkymässä käyttäjä voi hallinoida omien osakkeiden seurantaa. 
+[Tapahtumankäsitettelijä](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/create_user_login_view.py) kutsuu sovelluslogiikan metodia [login](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/user_services.py) antaen parametriksi käyttäjätunnuksen ja salasanan. Sovelluslogiikka selvittää `UserRepository`:n avulla, onko käyttäjätunnus olemassa. Jos on, tarkastetaan täsmääkö salasana. Onnistuneen tarkastuksen jälkeen, käyttöliittymä avaa uuden näkymän `UserView`:n avulla. Tässä näkymässä käyttäjä voi hallinoida omien osakkeiden seurantaa. 
+
+### Osakelistauksen muodostaminen DayView
+
+Sovelluksen käynnistyessä sovelluksen kontrolli etenee seuraavasti:
+
+![](./kuvat/sekvenssi-dayview.png)
+
+Käyttöliittymä [UI](../src/ui/ui.py) luo uuden [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py) olion ja kutsuu tämän metodia [initialize_read](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L23) antaen sille parametriksi tiedoston nimen, jota halutaan käyttää. `MarketData` lukee halutun tiedoston `Repository` luokan [ReadStockListFromFile](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py) avulla, joka palauttaa sille sanakirja muotoisen listauksen osakkeista. Käyttöliittymä `UI` kutsuu seuraavaksi `MarketData` luokan metotodia [stock_create_stock_list](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L38). `MarketData` luo aikaisemmin luetun osakelistauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. `SingleStockData` luokka hakee tarvittavat tiedot [yfinance](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py#31) kirjastoa käyttäen. `MarketData` kerää nämä tiedot [result](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#48) listaan. Data keräys on nyt valmis. Käyttöliittymä `UI` voi nyt käynistää oletusnäkymän [DayView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/day_view.py) anten sille _stocks_-listauksen osakkeista, joita halutaan näyttää. Käyttöliittymä `DayView` hakee tarvittavat tiedot osakkeista `MarketData` oliolta ja luo niistä listauksen _tkinterin_ _Treeview_ toiminnallisuutta hyödyntäen.
+
+Sama toimintalogiikka toistuu myös käyttöliittymän [YTDView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/ytd_view.py) ja [YearView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/year_view.py) kohdalla.
+
+
+## Ohjelman rakenteeseen jääneet heikkoudet
+
+### Ohjelman rakenne
+
+Ohjelman rakenne ei ole täysin puhtaasti jaoteltu. Ohjelman rakennetta voisi vielä selkeyttää tekemällä osakkeista puhtaan olion, kuten käyttäjistä tehdään. Tällä hetkellä _singlestockdata.py_ sisältää sekä palveluita että olio-rakennetta.
+
+### Käytettävyys
+
+Osakkeiden tietojen noutaminen osoittautui harmillisen hitaaksi kun hakuja suoritetaan useampia. Tästä syystä jouduin alkuperäistä ajatusta supistamaan. Tämän tyylinen sovellus toimisi paremmin nettipohjaisena, jossa palevelimella tapahtuisivat haut taustatoimintoina säännöllisesti ja käyttäjälle tiedot tulisivat heti näkyviin.
+
+### Käyttöliittymä
+
+Graaffiseti käyttöliittymä on karu, joskin hoitaa sille annetut velvollisuudet. Koodissa on toistoa, etenki kohdissa, joissa käytetään tkinterin _Treeview_ toiminnallisuutta.
+
+### Muuta
+
+_yfinance_ kirjasto ja _poetry_ aiheuttivat harmia projektin alkuvaiheilla yhteensopivuus ongelmien johdosta. Saattaa olla, että _poetry_ asetuksiin on jäänyt jotain yläämäiräistä sotkua tämän johdosta.
+
+Jouduin myös jättämään kovakoodattua tietoa kohtaan jossa haetaan vuoden alusta olevaa pörssikurssia. Koska vuoden ensimmäinen pörssipäivä vaihtelee, niin hakua ei voi asettaa tiettyyn päivämäärään jokaiselle vuodelle. Tällöin haku saattaa tuottaa tyhjän haua ja tietoa ei saada noudettua. Tähän ongelmaan varmaan löytyy jonkinlainen ratkaisu.
 
 
 
