@@ -18,7 +18,7 @@ Seuraavana työvaiheena on viimeistellä dokumentaatio sekä lisätä koodiin pu
 - [Arkkitehtuurikuvaus](./osakeseuranta/dokumentaatio/arkkitehtuuri.md)
 
 ## Release
-[Viimeisin release](https://github.com/jarisokka/ot-harjoitustyo/releases/tag/viikko5)
+[Viimeisin release](https://github.com/jarisokka/ot-harjoitustyo/releases/tag/Viikko6)
 
 ## Asennus
 Suorita seuraavat komennot _osakeseuranta_-hakemistossa.

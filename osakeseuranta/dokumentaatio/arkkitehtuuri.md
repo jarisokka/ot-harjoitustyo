@@ -68,7 +68,7 @@ Sovelluksen käynnistyessä sovelluksen kontrolli etenee seuraavasti:
 
 ![](./kuvat/sekvenssi-dayview.png)
 
-Käyttöliittymä [UI](../src/ui/ui.py) luo uuden [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py) olion ja kutsuu tämän metodia [initialize_read](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L23) antaen sille parametriksi tiedoston nimen, jota halutaan käyttää. `MarketData` lukee halutun tiedoston `Repository` luokan [ReadStockListFromFile](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py) avulla, joka palauttaa sille sanakirja muotoisen listauksen osakkeista. Käyttöliittymä `UI` kutsuu seuraavaksi `MarketData` luokan metotodia [stock_create_stock_list](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L38). `MarketData` luo aikaisemmin luetun osakelistauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. `SingleStockData` luokka hakee tarvittavat tiedot [yfinance](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py#31) kirjastoa käyttäen. `MarketData` kerää nämä tiedot [result](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#48) listaan. Data keräys on nyt valmis. Käyttöliittymä `UI` voi nyt käynistää oletusnäkymän [DayView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/day_view.py) anten sille _stocks_-listauksen osakkeista, joita halutaan näyttää. Käyttöliittymä `DayView` hakee tarvittavat tiedot osakkeista `MarketData` oliolta ja luo niistä listauksen _tkinterin_ _Treeview_ toiminnallisuutta hyödyntäen.
+Käyttöliittymä [UI](../src/ui/ui.py) luo uuden [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py) olion ja kutsuu tämän metodia [initialize_read](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L23) antaen sille parametriksi tiedoston nimen, jota halutaan käyttää. `MarketData` lukee halutun tiedoston `Repository` luokan [ReadStockListFromFile](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py) avulla, joka palauttaa sille sanakirja muotoisen listauksen osakkeista. Käyttöliittymä `UI` kutsuu seuraavaksi `MarketData` luokan metotodia [stock_create_stock_list](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L38). `MarketData` luo aikaisemmin luetun osakelistauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. `SingleStockData` luokka hakee tarvittavat tiedot [yfinance](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py#L31) kirjastoa käyttäen. `MarketData` kerää nämä tiedot [result](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L48) listaan. Data keräys on nyt valmis. Käyttöliittymä `UI` voi nyt käynistää oletusnäkymän [DayView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/day_view.py) anten sille _stocks_-listauksen osakkeista, joita halutaan näyttää. Käyttöliittymä `DayView` hakee tarvittavat tiedot osakkeista `MarketData` oliolta ja luo niistä listauksen _tkinterin_ _Treeview_ toiminnallisuutta hyödyntäen.
 
 Sama toimintalogiikka toistuu myös käyttöliittymän [YTDView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/ytd_view.py) ja [YearView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/year_view.py) kohdalla.
 
@@ -77,21 +77,18 @@ Sama toimintalogiikka toistuu myös käyttöliittymän [YTDView](https://github.
 
 ### Ohjelman rakenne
 
-Ohjelman rakenne ei ole täysin puhtaasti jaoteltu. Ohjelman rakennetta voisi vielä selkeyttää tekemällä osakkeista puhtaan olion, kuten käyttäjistä tehdään. Tällä hetkellä _singlestockdata.py_ sisältää sekä palveluita että olio-rakennetta.
+Ohjelman rakenne ei ole täysin puhtaasti jaoteltu. Ohjelman rakennetta voisi vielä selkeyttää tekemällä osakkeista puhtaan olion, kuten käyttäjistä tehdään. Tällä hetkellä _marketdata.py_ ja _singlestockdata.py_ sisältää sekä palveluita että olio-rakennetta.
 
 ### Käytettävyys
 
-Osakkeiden tietojen noutaminen osoittautui harmillisen hitaaksi kun hakuja suoritetaan useampia. Tästä syystä jouduin alkuperäistä ajatusta supistamaan. Tämän tyylinen sovellus toimisi paremmin nettipohjaisena, jossa palevelimella tapahtuisivat haut taustatoimintoina säännöllisesti ja käyttäjälle tiedot tulisivat heti näkyviin.
+Osakkeiden tietojen noutaminen osoittautui harmillisen hitaaksi kun hakuja suoritetaan useampia peräkkäin. Tästä syystä jouduin alkuperäistä ajatusta supistamaan. Tämän tyylinen sovellus toimisi paremmin nettipohjaisena, jossa palvelimella tapahtuisivat haut taustatoimintoina säännöllisesti ja näin viimeisimmät tiedot tulisivat käyttäjälle heti näkyviin.
 
 ### Käyttöliittymä
 
-Graaffiseti käyttöliittymä on karu, joskin hoitaa sille annetut velvollisuudet. Koodissa on toistoa, etenki kohdissa, joissa käytetään tkinterin _Treeview_ toiminnallisuutta.
+Graaffisesti käyttöliittymä on karu, joskin hoitaa sille annetut velvollisuudet. Koodissa on toistoa, etenki kohdissa, joissa käytetään tkinterin _Treeview_ toiminnallisuutta.
 
 ### Muuta
 
-_yfinance_ kirjasto ja _poetry_ aiheuttivat harmia projektin alkuvaiheilla yhteensopivuus ongelmien johdosta. Saattaa olla, että _poetry_ asetuksiin on jäänyt jotain yläämäiräistä sotkua tämän johdosta.
+_yfinance_ kirjasto ja _poetry_ aiheuttivat harmia projektin alkuvaiheilla yhteensopivuus ongelmien johdosta. Saattaa olla, että _poetry_ asetuksiin on jäänyt jotain ylimääräistä sotkua tämän johdosta.
 
-Jouduin myös jättämään kovakoodattua tietoa kohtaan jossa haetaan vuoden alusta olevaa pörssikurssia. Koska vuoden ensimmäinen pörssipäivä vaihtelee, niin hakua ei voi asettaa tiettyyn päivämäärään jokaiselle vuodelle. Tällöin haku saattaa tuottaa tyhjän haua ja tietoa ei saada noudettua. Tähän ongelmaan varmaan löytyy jonkinlainen ratkaisu.
-
-
-
+Jouduin myös jättämään kovakoodattua tietoa kohtaan jossa haetaan vuoden alusta olevaa pörssikurssia. Koska vuoden ensimmäinen pörssipäivä vaihtelee, niin hakua ei voi asettaa tiettyyn päivämäärään jokaiselle vuodelle. Tällöin haku saattaa tuottaa tyhjän haun ja tietoa ei saada noudettua. Tähän ongelmaan varmaan löytyisi jonkinlainen ratkaisu.
