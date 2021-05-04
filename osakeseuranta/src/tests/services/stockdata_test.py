@@ -53,5 +53,5 @@ class TestStockData(unittest.TestCase):
         self.assertEqual(self.stock.get_day(), self.day)
     
     def test_get_time_works(self):
-        self.time = datetime.today().strftime("%H:%H:%S")
+        self.time = datetime.today().strftime("%H:%M:%S")
         self.assertEqual(self.stock.get_time(), self.time)
