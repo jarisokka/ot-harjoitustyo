@@ -26,7 +26,7 @@ Sovelluksen loogisen tietomallin muodostovat [MarketData](https://github.com/jar
 
 ![](./kuvat/tietomalli-marketdata.png)
 
-Luokan `User` avulla määritellään omistussuhde tietokantaan tallenettuihin osakkeisiin.
+Luokan `User` avulla määritellään omistussuhde tietokantaan tallennettuihin osakkeisiin.
 
 ![](./kuvat/tietomalli-user.png)
 
@@ -89,7 +89,7 @@ Sama toimintalogiikka toistuu myös käyttöliittymän [YTDView](https://github.
 
 ![](./kuvat/sekvenssi-userview.png)
 
-Käyttöliittymä `UserView` noutaa kirjautuneen käyttäjän osaketiedot kutsumalla luokan `StockServices` metodia [initialize_data](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py#L33) antamalla tälle parametriksi _käyttäjän_. `StockServices` hakee käyttäjän osakkeet `Repository` luokan [StockRepository](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/stock_repository.py) avulla, joka palauttaa listan käyttäjän osakkeista. Listaus sisältää osakkeen ticker-tunnuksen, nimen sekä myös käyttäjän sinne tallentamat ostohinnat ja ostoajankohdat. `UserView` käyttöliittymä päivittää tähän listaukseen näiden osakkeiden tämän hetkisen pörssikurssin sekä kehitysluvut euroina ja prosentteina. Tämä tapahtuu kutsumalla `StockServices` luokan metodia [get_stock_data](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py#L44) antamalla tälle parametriksi edellä mainittu listaus. `StockServices` luo tämän listauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. Tässä kohtaa listaukseen päivitetään päivän osakekurssit ja kehitysluvut. Haku tapahtuu samalla tavalla kuin edellisessä _DayView_ tapauksessa. Listaus palautetaan `UserView` luokaan ja näytetään käyttäjälle _Treeview_ toiminnallisuutta hyödyntäen.
+Käyttöliittymä `UserView` noutaa kirjautuneen käyttäjän osaketiedot kutsumalla luokan `StockServices` metodia [initialize_data](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/stock_services.py#L33) antamalla tälle parametriksi _käyttäjän_. `StockServices` hakee käyttäjän osakkeet `Repository` luokan [StockRepository](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/stock_repository.py) avulla, joka palauttaa listan käyttäjän osakkeista. Listaus sisältää osakkeen ticker-tunnuksen, nimen sekä myös käyttäjän sinne tallentamat ostohinnat ja ostoajankohdat. `UserView` käyttöliittymä päivittää tähän listaukseen näiden osakkeiden tämän hetkisen pörssikurssin sekä kehitysluvut euroina ja prosentteina. Tämä tapahtuu kutsumalla `StockServices` luokan metodia [get_stock_data](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/stock_services.py#L44) antamalla tälle parametriksi edellä mainittu listaus. `StockServices` luo tämän listauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. Tässä kohtaa listaukseen päivitetään päivän osakekurssit ja kehitysluvut. Haku tapahtuu samalla tavalla kuin edellisessä _DayView_ tapauksessa. Listaus palautetaan `UserView` luokaan ja näytetään käyttäjälle _Treeview_ toiminnallisuutta hyödyntäen.
 
 
 ## Ohjelman rakenteeseen jääneet heikkoudet
