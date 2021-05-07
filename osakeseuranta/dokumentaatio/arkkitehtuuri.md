@@ -20,6 +20,17 @@ Jokainen näkymä on toteutettu omana luokkanaan. Päänäkymä muodostuu itse a
 
 Käyttöliittymä on pyritty eristämään täysin sovelluslogiikasta. Se ainostaan kutsuu _services_ pakkauksessa olevia luokkia ja metodeja.
 
+## Sovelluslogiikka
+
+Sovelluksen loogisen tietomallin muodostovat [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py), [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) sekä [User](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/entities/user.py) luokat. Näistä vain `User` on puhdas olio. `MarketData` ja `SingleStockData` olioissa on myös palveluita mukana. Tämän takia jälkimmäiset luokat on sijoitettu _services_ pakkaukseen. `MarketData` on näistä olio, jota ei välttämättä tarvita. Sen avulla kuitenkin koin, että sain vähennettyä koodin toisteisuutta.
+
+![](./kuvat/tietomalli-marketdata.png)
+
+Luokan `User` avulla määritellään omistussuhde tietokantaan tallenettuihin osakkeisiin.
+
+![](./kuvat/tietomalli-user.png)
+
+
 ## Tietojen pysyväistallennus ja lataus
 
 Pakkauksen _repositories_ luokat `StockRepository` ja `UserRepository` huolehtivat tietojen tallentamisesta SQLite-tietokantaan.
@@ -71,6 +82,14 @@ Sovelluksen käynnistyessä sovelluksen kontrolli etenee seuraavasti:
 Käyttöliittymä [UI](../src/ui/ui.py) luo uuden [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py) olion ja kutsuu tämän metodia [initialize_read](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L23) antaen sille parametriksi tiedoston nimen, jota halutaan käyttää. `MarketData` lukee halutun tiedoston `Repository` luokan [ReadStockListFromFile](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py) avulla, joka palauttaa sille sanakirja muotoisen listauksen osakkeista. Käyttöliittymä `UI` kutsuu seuraavaksi `MarketData` luokan metotodia [stock_create_stock_list](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L38). `MarketData` luo aikaisemmin luetun osakelistauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. `SingleStockData` luokka hakee tarvittavat tiedot [yfinance](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py#L31) kirjastoa käyttäen. `MarketData` kerää nämä tiedot [result](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py#L48) listaan. Data keräys on nyt valmis. Käyttöliittymä `UI` voi nyt käynistää oletusnäkymän [DayView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/day_view.py) anten sille _stocks_-listauksen osakkeista, joita halutaan näyttää. Käyttöliittymä `DayView` hakee tarvittavat tiedot osakkeista `MarketData` oliolta ja luo niistä listauksen _tkinterin_ _Treeview_ toiminnallisuutta hyödyntäen.
 
 Sama toimintalogiikka toistuu myös käyttöliittymän [YTDView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/ytd_view.py) ja [YearView](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/year_view.py) kohdalla.
+
+### Osakelistauksen muodostaminen UserView
+
+[Käyttäjäkohtaisen](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/ui/user_view.py) näkymän tietojen kontrolli etenee eri tavalla kuin edellisessä, koska tällöin käsitellään myös tietokantaa.
+
+![](./kuvat/sekvenssi-userview.png)
+
+Käyttöliittymä `UserView` noutaa kirjautuneen käyttäjän osaketiedot kutsumalla luokan `StockServices` metodia [initialize_data](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py#L33) antamalla tälle parametriksi _käyttäjän_. `StockServices` hakee käyttäjän osakkeet `Repository` luokan [StockRepository](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/stock_repository.py) avulla, joka palauttaa listan käyttäjän osakkeista. Listaus sisältää osakkeen ticker-tunnuksen, nimen sekä myös käyttäjän sinne tallentamat ostohinnat ja ostoajankohdat. `UserView` käyttöliittymä päivittää tähän listaukseen näiden osakkeiden tämän hetkisen pörssikurssin sekä kehitysluvut euroina ja prosentteina. Tämä tapahtuu kutsumalla `StockServices` luokan metodia [get_stock_data](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/repositories/reader.py#L44) antamalla tälle parametriksi edellä mainittu listaus. `StockServices` luo tämän listauksen perusteella yksittäisiä osake olioita jokaisesta listalla olevasta osakkeesta käyttäen [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) luokkaa. Tässä kohtaa listaukseen päivitetään päivän osakekurssit ja kehitysluvut. Haku tapahtuu samalla tavalla kuin edellisessä _DayView_ tapauksessa. Listaus palautetaan `UserView` luokaan ja näytetään käyttäjälle _Treeview_ toiminnallisuutta hyödyntäen.
 
 
 ## Ohjelman rakenteeseen jääneet heikkoudet

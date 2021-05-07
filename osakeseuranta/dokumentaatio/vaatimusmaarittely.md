@@ -33,10 +33,12 @@ Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautu
 * [x] Uloskirjautuminen, paluu perusnäkymään.
 
 ## Jatkokehitysideoita
+* Sovelluslogiikan selkeyttäminen niin, että osakkeesta muodostetaan oma luokka ja palvelut eriytetään
 * Voidaan valita pörssi, jonka kurssit näytetään. Oletusnäkymänä OMXH25 (Helsinki). Valittavana pohjoismaiden pörssit.
 * Pörssien määrän lisääminen sekä osakkeiden määrän lisääminen kattamaan esim. Pohjoismaat.
 * Visuaalisien elementtien tuominen mukaan, kurssigraafit ym.
 * Omien osakkeiden vertailu toiseen osakkeeseen tai yleisindeksiin. Tämä voidaan esittää kurssigraafin avulla.
+* Omien osakkeiden kokonaiskehitys.
 * Pörssin kurssien päivitys esim. viiden minuutin välein.
 * Erillaisten tunnuslukujen lisääminen osakkeisiin, esim. P/E ja volatiliteetti. 
 

@@ -32,7 +32,8 @@
 | 2.5   | 3    | Testejä laajennettu |
 | 3.5.  | 4    | Dockstring-dokumentaation lisäämistä |
 | 4.5.  | 3    | Ohjeiden ja arkkitehtuurikuvauksen täydentämistä |
-|       | 80   | Yhteensä |
+| 7.5.  | 3    | Arkkitehtuurikuvauksen täydentämistä |
+|       | 83   | Yhteensä |
 
 
 
