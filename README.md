@@ -12,10 +12,12 @@ Kirjautunut käyttäjä voi tallentaa omia osakkeita tietokantaan. Jos testaat s
 Seuraavana työvaiheena on viimeistellä dokumentaatio sekä lisätä koodiin puutuvat docstring-dokumentaatiot.
 
 ## Dokumentaatio
-- [Käyttöohjeet](./osakeseuranta/dokumentaatio/kayttoohje.md)
+- [Käyttöohje](./osakeseuranta/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./osakeseuranta/dokumentaatio/vaatimusmaarittely.md)
-- [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
 - [Arkkitehtuurikuvaus](./osakeseuranta/dokumentaatio/arkkitehtuuri.md)
+- [Testusdokumentti](./osakeseuranta/dokumentaatio/testaus.md)
+- [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
+
 
 ## Release
 [Viimeisin release](https://github.com/jarisokka/ot-harjoitustyo/releases/tag/Viikko6)

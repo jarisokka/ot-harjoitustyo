@@ -22,7 +22,7 @@ Käyttöliittymä on pyritty eristämään täysin sovelluslogiikasta. Se ainost
 
 ## Sovelluslogiikka
 
-Sovelluksen loogisen tietomallin muodostovat [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py), [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) sekä [User](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/entities/user.py) luokat. Näistä vain `User` on puhdas olio. `MarketData` ja `SingleStockData` olioissa on myös palveluita mukana. Tämän takia jälkimmäiset luokat on sijoitettu _services_ pakkaukseen. `MarketData` on näistä olio, jota ei välttämättä tarvita. Sen avulla kuitenkin koin, että sain vähennettyä koodin toisteisuutta.
+Sovelluksen loogisen tietomallin muodostovat [MarketData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/marketdata.py), [SingleStockData](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/services/singlestockdata.py) sekä [User](https://github.com/jarisokka/ot-harjoitustyo/blob/master/osakeseuranta/src/entities/user.py) luokat. Näistä vain `User` on puhdas olio. `MarketData` ja `SingleStockData` olioissa on myös palveluita mukana. Tämän takia jälkimmäiset luokat on sijoitettu _services_ pakkaukseen. `MarketData` on näistä olio, jonka tarpeellisuus on tässä vaiheessa vähäinen. Se vähentää tässä vaiheessa koodin toisteellisuutta ja ajatuksena on, että jos valittavana on useamman eri pörssin seuranta, niin tämän avulla niiden hallinnointi onnistuu.
 
 ![](./kuvat/tietomalli-marketdata.png)
 
@@ -111,3 +111,5 @@ Graaffisesti käyttöliittymä on karu, joskin hoitaa sille annetut velvollisuud
 _yfinance_ kirjasto ja _poetry_ aiheuttivat harmia projektin alkuvaiheilla yhteensopivuus ongelmien johdosta. Saattaa olla, että _poetry_ asetuksiin on jäänyt jotain ylimääräistä sotkua tämän johdosta.
 
 Jouduin myös jättämään kovakoodattua tietoa kohtaan jossa haetaan vuoden alusta olevaa pörssikurssia. Koska vuoden ensimmäinen pörssipäivä vaihtelee, niin hakua ei voi asettaa tiettyyn päivämäärään jokaiselle vuodelle. Tällöin haku saattaa tuottaa tyhjän haun ja tietoa ei saada noudettua. Tähän ongelmaan varmaan löytyisi jonkinlainen ratkaisu.
+
+Konsoliin tulostuu automaattisesti tiedon haun onnistuminen _yfinance_ palvelusta. Ei tietoa, saako tätä ominaisuutta kytkettyä pois päältä.
