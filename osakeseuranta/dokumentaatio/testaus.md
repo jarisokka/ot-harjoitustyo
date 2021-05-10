@@ -10,7 +10,7 @@ Jokaista sovelluslogiikasta vastaavaa luokkaa `MarketData`, `SingleStockData`, `
 
 ### Repositorio-luokat
 
-Repositorio-luokkia `StockRepository` ja `UserRepository` testataan ainoastaan testeissä käytössäolevalla tietokannalla. Molemmat luokat testataan samma tekniikalla, antamalle niille ennalta määritellyt arvot, jotka tallentetaan testitietokantaan.
+Repositorio-luokkia `StockRepository` ja `UserRepository` testataan ainoastaan testeissä käytössä olevalla tietokannalla. Molemmat luokat testataan samma tekniikalla, antamalle niille ennalta määritellyt arvot, jotka tallentetaan testitietokantaan.
 
 ### Testauskattavuus
 
@@ -30,13 +30,13 @@ Sovellusta on testattu sekä tilanteissa, joissa käyttäjät ja osakkeet tallet
 
 ### Toiminnallisuudet
 
-Kaikki [määrittelydokumentin](./vaatimusmaarittely) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä.
+Kaikki [määrittelydokumentin](./vaatimusmaarittely.md) ja käyttöohjeen listaamat toiminnallisuudet on käyty läpi. Kaikkien toiminnallisuuksien yhteydessä on syötekentät yritetty täyttää myös virheellisillä arvoilla kuten tyhjillä.
 
 ## Sovellukseen jääneet laatuongelmat
 
 Sovellus ei anna tällä hetkellä järkeviä virheilmoituksia, seuraavissa tilanteissa:
 
-- Osakkeiden hallinnointiin käytettävä csv-tiedostot puuttuvat.
+- Osakkeiden hallinnointiin käytettävä csv-tiedosto puuttuu.
 - Omien osakkeiden tallenuksessa käytettävää hakulistausta (search_list.csv) ei testattu jokaisen osakkeen osalta, joten se voi sisältää virheellisiä osakkeita.
 - Käytössä ei ole internet yhteyttä ja tämän johdosta ei voida käyttää _yfinance_ kirjastoa.
 - SQLite tietokantaa ei ole alustettu, eli `python -m poetry run invoke build`-komentoa ei ole suoritettu

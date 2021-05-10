@@ -33,7 +33,8 @@
 | 3.5.  | 4    | Dockstring-dokumentaation lisäämistä |
 | 4.5.  | 3    | Ohjeiden ja arkkitehtuurikuvauksen täydentämistä |
 | 7.5.  | 3    | Arkkitehtuurikuvauksen täydentämistä |
-|       | 83   | Yhteensä |
+| 10.5. | 2    | Dokumentaation täydentämistä |
+|       | 85   | Yhteensä |
 
 
 
