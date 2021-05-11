@@ -14,7 +14,7 @@ Sovelluksen toiminta on testattu Python-versiolla `3.6.0` Windows- ja Linux-jär
 - [Käyttöohje](./osakeseuranta/dokumentaatio/kayttoohje.md)
 - [Vaatimusmäärittely](./osakeseuranta/dokumentaatio/vaatimusmaarittely.md)
 - [Arkkitehtuurikuvaus](./osakeseuranta/dokumentaatio/arkkitehtuuri.md)
-- [Testusdokumentti](./osakeseuranta/dokumentaatio/testaus.md)
+- [Testausdokumentti](./osakeseuranta/dokumentaatio/testaus.md)
 - [Työaikakirjanpito](./osakeseuranta/dokumentaatio/tuntikirjanpito.md)
 
 
