@@ -4,7 +4,7 @@
 
 Sovelluksen avulla voidaan seurata valitun pörssin pörssikursseja sekä pitää listaa omista osakkeista ja seurata niiden kehitystä.
 
-# Käyttäjät
+## Käyttäjät
 
 Sovelluksessa on kaksi käyttäjätasoa; _normaali käyttäjä_, sekä _kirjautunut käyttäjä_.
 

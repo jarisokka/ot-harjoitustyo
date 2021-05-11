@@ -34,7 +34,8 @@
 | 4.5.  | 3    | Ohjeiden ja arkkitehtuurikuvauksen täydentämistä |
 | 7.5.  | 3    | Arkkitehtuurikuvauksen täydentämistä |
 | 10.5. | 2    | Dokumentaation täydentämistä |
-|       | 85   | Yhteensä |
+| 11.5  | 1    | Viimeiset viilaukset |
+|       | 86   | Yhteensä |
 
 
 

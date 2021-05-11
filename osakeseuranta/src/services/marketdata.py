@@ -57,7 +57,7 @@ class MarketData:
                 self.result[stock].append(str(changedayprice) + ' €')
                 self.result[stock].append(str(changedayprocent) + ' %')
             except:
-                print('Single stock data day failed')
+                return False
 
 
             #Prices ytd (beginning of the year)
@@ -70,7 +70,7 @@ class MarketData:
                 self.result[stock].append(str(changeytdprice) + ' €')
                 self.result[stock].append(str(changeytdprocent) + ' %')
             except:
-                print('Single stock data ytd failed')
+                return False
 
             #Prices One year
             try:
@@ -82,7 +82,7 @@ class MarketData:
                 self.result[stock].append(str(changeyearprice) + ' €')
                 self.result[stock].append(str(changeyearprocent) + ' %')
             except:
-                print('Single stock data year failed')
+                return False
 
     def _format_line(self, value):
         """Muokkaa float arvon merkkijonoksi. Lisää + merkin eteen, jos positiivinen.

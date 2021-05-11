@@ -3,7 +3,24 @@ from tkinter import Tk, ttk, constants
 
 
 class DayView:
+    """Käyttöliittymä luokka joka vastaa pörssikurssien
+         päiväkohtaisen kehityksen näyttämisestä"""
     def __init__(self, root, handle_ytd, handle_year, handle_login, stocks, market, day, index, procent):
+        """Luokan konstruktori joka luo uuden näkymän jossa
+            näytetään kurssien päiväkohtaiset kehitykset.
+
+        Args:
+            root: Päänäkymästä vastaava luokka.
+            handle_ytd: Vuoden alusta näkymästä vastaava luokka.
+            handle_year: Vuosi sitten näkymästä vastaava luokka.
+            handle_login: Kirjautumisnäkymästä vastaava luokka.
+            stocks: Sanakirja muodossa oleva listaus näytettävistä osakkeista,
+                avaimena ticker-tunnus.
+            market: MarketData olio joka sisältää pörssidatan.
+            day: Merkkijono, joka kertoo päivämäärän muodossa dd:mm:yy.
+            index: Float, joka kertoo pörssin tämän hetkisen indexin.
+            procent: Merkkijono, joka kertoo pörssin tämän hetkisen prosenttikehityksen.
+        """
         self._root = root
         self._handle_ytd = handle_ytd
         self._handle_year = handle_year
@@ -74,7 +91,10 @@ class DayView:
         frameMain = ttk.Label(master=self._frame)
         frameMain.pack(padx=10, pady=10) 
 
-        stock_tree = ttk.Treeview(frameMain, height=300)
+        view_scroll = Scrollbar(frameMain)
+        view_scroll.pack(side=RIGHT, fill=Y)
+
+        stock_tree = ttk.Treeview(frameMain, yscrollcommand=view_scroll.set, height=300)
         stock_tree['columns'] = ('#1', '#2', '#3', '#4', '#5')
 
         # Format columns
@@ -100,6 +120,6 @@ class DayView:
             price = str(self.market.get_now_price_with_ticker(stock))
             changem  = str(self.market.get_money_change_day_with_ticker(stock))
             changep  = str(self.market.get_procent_change_day_with_ticker(stock))
-            stock_tree.insert(parent='', index='end', iid=stock, text='', values=(symbol, name, price, changem, changep) )
+            stock_tree.insert(parent='', index='end', iid=stock, text='', values=(symbol, name, price, changem, changep))
         
         stock_tree.pack(padx=10, pady=10)

@@ -48,7 +48,6 @@ class SingleStockData:
             self.price_now = "{:.2f}".format(data['Close'][1])
             self.price_now = float(self.price_now)
         except:
-            print('Couldn´t download the wanted one day data')
             return False
 
     def stock_ytd(self):
@@ -62,7 +61,6 @@ class SingleStockData:
             self.price_ytd = "{:.2f}".format(data['Close'][0])
             self.price_ytd = float(self.price_ytd)
         except:
-            print('Couldn´t download the wanted YTD data')
             return False
 
     def stock_year(self):
@@ -76,7 +74,6 @@ class SingleStockData:
             self.price_year = "{:.2f}".format(data['Close'][0])
             self.price_year = float(self.price_year)
         except:
-            print('Couldn´t download the wanted year data')
             return False
 
     def get_ticker_symbol(self):
